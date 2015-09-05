@@ -25,14 +25,12 @@ library(CTDplot)
 devtools::load_all()
 ```
 ```{r fig.height = 3, fig.width = 7, message = FALSE, warning = F, results = 'hide'}
-data(ctd_ex)
-
 # default plot
-ctd_plot(ctd_ex, 'Salinity')
+ctd_plot(ctd_ex1, 'Salinity')
 
 # make color ramp match contour categories in legend
-ctd_plot(ctd_ex, 'Salinity', ncol = 8)
+ctd_plot(ctd_ex1, 'Salinity', ncol = 8)
 
 # change colors
-ctd_plot(ctd_ex, 'Salinity', cols = c('Blue', 'Purple', 'Orange'))
+ctd_plot(ctd_ex1, 'Salinity', cols = c('Blue', 'Purple', 'Orange'))
 ```

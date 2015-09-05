@@ -38,16 +38,14 @@ Plot two-dimensional contours for CTD data by depth and distance
 Raw data from the CTD are vertical profiles at unique stations.  The data are linearly interpolated along each profile and between stations to create a two-dimensional plotting surface.  The function currently only works for Pensacola Bay using hard-coded depth transect data.
 }
 \examples{
-data(ctd_ex)
-
 # default plot
-ctd_plot(ctd_ex, 'Salinity')
+ctd_plot(ctd_ex1, 'Salinity')
 
 # make color ramp match contour categories in legend
-ctd_plot(ctd_ex, 'Salinity', ncol = 8)
+ctd_plot(ctd_ex1, 'Salinity', ncol = 8)
 
 # change colors
-ctd_plot(ctd_ex, 'Salinity', cols = c('Blue', 'Purple', 'Orange'))
+ctd_plot(ctd_ex1, 'Salinity', cols = c('Blue', 'Purple', 'Orange'))
 }
 \references{
 Hagy III, JD, Murrell, MC. 2007. Susceptibility of a northern Gulf of Mexico estuary to hypoxia: An analysis using box models. Estuarine, Coastal, and Shelf Science. 74:239-253.

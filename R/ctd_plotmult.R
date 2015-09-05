@@ -1,40 +1,21 @@
 ######
-#' Contour plot for CTD data
+#' Multiple contour plots for CTD data
 #'
-#' Plot two-dimensional contours for CTD data by depth and distance
+#' Multiple contour plots for CTD data with same color scale
 #'
-#' @param dat_in ctd data along the tidal axis, as a \code{\link[base]{data.frame}}
-#' @param var_plo chr string of variable to plot from \code{dat_in}
-#' @param rngs_in output from \code{\link{get_rngs}}, used to scale the colors, see examples
-#' @param num_levs numeric for number of contour levels
-#' @param xlab chr string for x-axis label
-#' @param ylab chr string for y-axis label
-#' @param var_lab logical indicating if \code{var_plo} is printed on the plot
-#' @param cols chr string of colors for the plot
-#' @param ncol numeric indicating degree of smoothing for the color palette
+#' @param dat_in list of input ctd data where each element is a \code{\link[base]{data.frame}} of the vertical profiles for each station on a particular date
+#' @param ... additional arguments passed to \code{\link{ctd_dat}}
 #'
-#' @return The contour plot
+#' @return The contour plots with identical color scaling
 #'
 #' @export
 #'
-#' @details Raw data from the CTD are vertical profiles at unique stations.  The data are linearly interpolated along each profile and between stations to create a two-dimensional plotting surface.  The function currently only works for Pensacola Bay using hard-coded depth transect data.
-#'
-#' @references
-#' Hagy III, JD, Murrell, MC. 2007. Susceptibility of a northern Gulf of Mexico estuary to hypoxia: An analysis using box models. Estuarine, Coastal, and Shelf Science. 74:239-253.
-#'
 #' @examples
+#' dat <- list(ctd_ex1, ctd_ex2)
+#'
 #' # default plot
-#' ctd_plot(ctd_ex1, 'Salinity')
-#'
-#' # make color ramp match contour categories in legend
-#' ctd_plot(ctd_ex1, 'Salinity', ncol = 8)
-#'
-#' # change colors
-#' ctd_plot(ctd_ex1, 'Salinity', cols = c('Blue', 'Purple', 'Orange'))
-ctd_plot <- function(dat_in, var_plo, rngs_in = NULL, num_levs = 8, ylab = 'Depth (m)',
-  xlab = 'Channel distance from P01 to P09 (km)', var_lab = FALSE,
-  cols = c('tomato', 'lightblue', 'lightgreen','green'),
-  ncol = 100){
+#' ctd_plotmult(dat, 'Salinity')
+ctd_plotmult <- function(dat_in, ...){
 
   # maximum depth of data for each station, used for polygon masking
   # value is linearly interpolated to increase samp

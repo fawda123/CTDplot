@@ -1,5 +1,5 @@
 ######
-#' Example CTD data
+#' Example CTD data, second date
 #'
 #' Example CTD data at nine stations on the longitudinal axis of the Escambia Bay sub-basin of Pensacola Bay, Florida.
 #'
@@ -21,5 +21,5 @@
 #' }
 #'
 #' @examples
-#' data(ctd_ex)
-"ctd_ex"
+#' data(ctd_ex2)
+"ctd_ex2"

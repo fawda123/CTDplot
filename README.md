@@ -18,8 +18,6 @@ library(CTDplot)
 
 
 ```r
-data(ctd_ex)
-
 # default plot
 ctd_plot(ctd_ex, 'Salinity')
 ```
