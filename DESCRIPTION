@@ -1,10 +1,24 @@
 Package: CTDplot
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1
+Title: Plot CTD water quality data along an estuarine axis
+Version: 0.1.9000
 Date: 2015-09-05
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Marcus W. Beck [aut, cre]
+Maintainer: Marcus W. Beck <mbafs2012@gmail.com>
+Description: Plot CTD water quality data along an estuarine axis.
+  Values are linearly interpolated between sample stations and
+  across vertical profiles.  Sample stations are assumed to represent
+  the primary longitudinal axis of an estuary.
+BugReports: https://github.com/fawda123/CTDplot/issues
+License: CC0
 LazyData: TRUE
+Imports:
+  fields,
+  reshape2,
+  zoo
+LazyData: true
+Depends:
+    R (>= 3.2.0)
+Authors@R: person(given = "Marcus W.", family = "Beck",
+    role = c("aut","cre"),
+    email = "mbafs2012@gmail.com")

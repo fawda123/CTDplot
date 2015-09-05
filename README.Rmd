@@ -1,0 +1,38 @@
+---
+output:
+  html_document:
+    keep_md: yes
+    toc: no
+    self_contained: no
+---
+
+## CTDplot
+
+#### *Marcus W. Beck, mbafs2012@gmail.com*
+
+[![Travis-CI Build Status](https://travis-ci.org/fawda123/CTDplot.svg?branch=master)](https://travis-ci.org/fawda123/CTDplot)
+
+Create two-dimensional contour plots of CTD water quality data.  Currently only works with example data for Pensacola Bay, Florida. Install the package as follows:
+
+```{r, eval = FALSE}
+install.packages(devtools)
+library(devtools)
+install_github('fawda123/CTDplot')
+library(CTDplot)
+```
+
+```{r echo = F, message = F, warning = F, results = 'hide'}
+devtools::load_all()
+```
+```{r fig.height = 3, fig.width = 7, message = FALSE, warning = F, results = 'hide'}
+data(ctd_ex)
+
+# default plot
+ctd_plot(ctd_ex, 'Salinity')
+
+# make color ramp match contour categories in legend
+ctd_plot(ctd_ex, 'Salinity', ncol = 8)
+
+# change colors
+ctd_plot(ctd_ex, 'Salinity', cols = c('Blue', 'Purple', 'Orange'))
+```
