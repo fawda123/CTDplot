@@ -9,7 +9,7 @@ ctd_plotmult(dat_in, ...)
 \arguments{
 \item{dat_in}{list of input ctd data where each element is a \code{\link[base]{data.frame}} of the vertical profiles for each station on a particular date}
 
-\item{...}{additional arguments passed to \code{\link{ctd_dat}}}
+\item{...}{additional arguments passed to \code{\link{ctd_plot}}}
 }
 \value{
 The contour plots with identical color scaling

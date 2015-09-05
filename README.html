@@ -82,6 +82,10 @@ ctd_plot(ctd_ex1, &#39;Salinity&#39;, ncol = 8)</code></pre>
 <pre class="r"><code># change colors
 ctd_plot(ctd_ex1, &#39;Salinity&#39;, cols = c(&#39;Blue&#39;, &#39;Purple&#39;, &#39;Orange&#39;))</code></pre>
 <p><img src="README_files/figure-html/unnamed-chunk-3-3.png" /></p>
+<pre class="r"><code># plot two dates with same color scaling
+dat &lt;- list(ctd_ex1, ctd_ex2)
+ctd_plotmult(dat, &#39;Salinity&#39;)</code></pre>
+<p><img src="README_files/figure-html/unnamed-chunk-4-1.png" /></p>
 </div>
 </div>
 
