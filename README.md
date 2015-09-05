@@ -19,21 +19,21 @@ library(CTDplot)
 
 ```r
 # default plot
-ctd_plot(ctd_ex, 'Salinity')
+ctd_plot(ctd_ex1, 'Salinity')
 ```
 
 ![](README_files/figure-html/unnamed-chunk-3-1.png) 
 
 ```r
 # make color ramp match contour categories in legend
-ctd_plot(ctd_ex, 'Salinity', ncol = 8)
+ctd_plot(ctd_ex1, 'Salinity', ncol = 8)
 ```
 
 ![](README_files/figure-html/unnamed-chunk-3-2.png) 
 
 ```r
 # change colors
-ctd_plot(ctd_ex, 'Salinity', cols = c('Blue', 'Purple', 'Orange'))
+ctd_plot(ctd_ex1, 'Salinity', cols = c('Blue', 'Purple', 'Orange'))
 ```
 
 ![](README_files/figure-html/unnamed-chunk-3-3.png) 
