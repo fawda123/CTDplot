@@ -41,7 +41,7 @@ ctd_plot(ctd_ex1, 'Salinity', cols = c('Blue', 'Purple', 'Orange'))
 ```r
 # plot two dates with same color scaling
 dat <- list(ctd_ex1, ctd_ex2)
-ctd_plotmult(dat, 'Salinity')
+ctd_plotmult(dat, 'Salinity', var_labs = c('April', 'May'))
 ```
 
 ![](README_files/figure-html/unnamed-chunk-4-1.png) 

@@ -9,7 +9,7 @@
 #' @param num_levs numeric for number of contour levels
 #' @param xlab chr string for x-axis label
 #' @param ylab chr string for y-axis label
-#' @param var_lab logical indicating if \code{var_plo} is printed on the plot
+#' @param var_lab optional chr string of text to include in the plot
 #' @param cols chr string of colors for the plot
 #' @param ncol numeric indicating degree of smoothing for the color palette
 #'
@@ -32,7 +32,7 @@
 #' # change colors
 #' ctd_plot(ctd_ex1, 'Salinity', cols = c('Blue', 'Purple', 'Orange'))
 ctd_plot <- function(dat_in, var_plo, rngs_in = NULL, num_levs = 8, ylab = 'Depth (m)',
-  xlab = 'Channel distance from P01 to P09 (km)', var_lab = FALSE,
+  xlab = 'Channel distance from P01 to P09 (km)', var_lab = NULL,
   cols = c('tomato', 'lightblue', 'lightgreen','green'),
   ncol = 100){
 
@@ -169,8 +169,8 @@ ctd_plot <- function(dat_in, var_plo, rngs_in = NULL, num_levs = 8, ylab = 'Dept
 
   ##
   # variable name -lower left
-  if(var_lab)
-    text(x = par('usr')[1], par('usr')[3] + 1, labels = var_plo, pos = 4,
+  if(!is.null(var_lab))
+    text(x = par('usr')[1], par('usr')[3] + 1, labels = var_lab, pos = 4,
       cex = 1.5)
 
   box()

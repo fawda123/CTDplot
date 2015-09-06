@@ -37,5 +37,5 @@ ctd_plot(ctd_ex1, 'Salinity', cols = c('Blue', 'Purple', 'Orange'))
 ```{r fig.height = 6, fig.width = 8, message = FALSE, warning = F, results = 'hide'}
 # plot two dates with same color scaling
 dat <- list(ctd_ex1, ctd_ex2)
-ctd_plotmult(dat, 'Salinity')
+ctd_plotmult(dat, 'Salinity', var_labs = c('April', 'May'))
 ```

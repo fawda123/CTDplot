@@ -6,7 +6,7 @@
 \usage{
 ctd_plot(dat_in, var_plo, rngs_in = NULL, num_levs = 8,
   ylab = "Depth (m)", xlab = "Channel distance from P01 to P09 (km)",
-  var_lab = FALSE, cols = c("tomato", "lightblue", "lightgreen", "green"),
+  var_lab = NULL, cols = c("tomato", "lightblue", "lightgreen", "green"),
   ncol = 100)
 }
 \arguments{
@@ -22,7 +22,7 @@ ctd_plot(dat_in, var_plo, rngs_in = NULL, num_levs = 8,
 
 \item{xlab}{chr string for x-axis label}
 
-\item{var_lab}{logical indicating if \code{var_plo} is printed on the plot}
+\item{var_lab}{optional chr string of text to include in the plot}
 
 \item{cols}{chr string of colors for the plot}
 
