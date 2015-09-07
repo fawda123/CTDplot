@@ -182,10 +182,6 @@ ctd_plot <- function(dat_in, var_plo, rngs_in = NULL, num_levs = 8, ylab = 'Dept
     nlevels = levs,
     ylab = "",
     ylim = c(min(z.val), max(z.val)))
-  filled_legend(x.val, y.val, rotate(z.val), color.palette = in_col, xlab = "",
-    nlevels = levs,
-    ylab = "",
-    ylim = c(min(z.val), max(z.val)))
 
 }
 
