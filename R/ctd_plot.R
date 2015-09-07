@@ -47,7 +47,6 @@ ctd_plot <- function(dat_in, var_plo, rngs_in = NULL, num_levs = 8, ylab = 'Dept
   dat_in <- dat_in[, c('Station', 'Depth', var_plo, 'dist')]
 
   dat_in$Depth <- -1 * dat_in$Depth
-  dat_in$dist <- dat_in$dist * 1.6093
 
   # for plotting station location
   top <- unique(dat_in[, c('Station', 'dist')])
