@@ -123,7 +123,7 @@ ctd_plot <- function(dat_in, var_plo, rngs_in = NULL, num_levs = 8, ylab = 'Dept
     }
 
   # plot margins
-  par(new = "TRUE", plt = c(0.1,0.85,0.2,0.9), las = 1, cex.axis = 1)
+  par(new = "TRUE", plt = c(0.08,0.89,0.2,0.9), las = 1, cex.axis = 1)
 
   # color function
   in_col <- colorRampPalette(cols)
@@ -131,7 +131,7 @@ ctd_plot <- function(dat_in, var_plo, rngs_in = NULL, num_levs = 8, ylab = 'Dept
   # contour plot with isolines
   filled_contour(x = x.val, y = y.val, z = rotate(z.val),
     color.palette = in_col,
-    ylab = ylab, xlab='',
+    ylab = '', xlab = '',
     nlevels = ncol, # for smoothed colors
     axes = F)
   contour(x = x.val, y = y.val, z = rotate(z.val), nlevels=levs,
@@ -141,7 +141,10 @@ ctd_plot <- function(dat_in, var_plo, rngs_in = NULL, num_levs = 8, ylab = 'Dept
   # axis labels
 
   # xlab
-  mtext(text = xlab, side = 1, line = 3)
+  mtext(text = xlab, side = 1, line = 2)
+
+  # ylab
+  mtext(text = ylab, side = 2, line = 2, las = 0)
 
   ##
   # axes
@@ -176,7 +179,7 @@ ctd_plot <- function(dat_in, var_plo, rngs_in = NULL, num_levs = 8, ylab = 'Dept
 
   ##
   # legend
-  par(new = "TRUE", plt = c(0.87,0.91,0.2,0.9), las = 1, cex.axis = 1)
+  par(new = "TRUE", plt = c(0.91,0.95,0.2,0.9), las = 1, cex.axis = 1)
   filled_legend(x.val, y.val, rotate(z.val), color.palette = in_col, xlab = "",
     nlevels = levs,
     ylab = "",
