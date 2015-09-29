@@ -123,7 +123,7 @@ ctd_plot <- function(dat_in, var_plo, rngs_in = NULL, num_levs = 8, ylab = 'Dept
     }
 
   # plot margins
-  par(new = "TRUE", plt = c(0.15,0.85,0.3,0.9), las = 1, cex.axis = 1)
+  par(new = "TRUE", plt = c(0.1,0.85,0.2,0.9), las = 1, cex.axis = 1)
 
   # color function
   in_col <- colorRampPalette(cols)
@@ -176,7 +176,7 @@ ctd_plot <- function(dat_in, var_plo, rngs_in = NULL, num_levs = 8, ylab = 'Dept
 
   ##
   # legend
-  par(new = "TRUE", plt = c(0.87,0.91,0.3,0.9), las = 1, cex.axis = 1)
+  par(new = "TRUE", plt = c(0.87,0.91,0.2,0.9), las = 1, cex.axis = 1)
   filled_legend(x.val, y.val, rotate(z.val), color.palette = in_col, xlab = "",
     nlevels = levs,
     ylab = "",
