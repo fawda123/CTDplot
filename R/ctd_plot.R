@@ -5,6 +5,8 @@
 #'
 #' @param dat_in ctd data along the tidal axis, as a \code{\link[base]{data.frame}}
 #' @param var_plo chr string of variable to plot from \code{dat_in}
+#' @param date chr string of date to plot, only required if input data has more than one sample date
+#' @param date_col chr string of name of date column
 #' @param rngs_in output from \code{\link{get_rngs}}, used to scale the colors, see examples
 #' @param num_levs numeric for number of contour levels
 #' @param xlab chr string for x-axis label
@@ -31,7 +33,8 @@
 #'
 #' # change colors
 #' ctd_plot(ctd_ex1, 'Salinity', cols = c('Blue', 'Purple', 'Orange'))
-ctd_plot <- function(dat_in, var_plo, rngs_in = NULL, num_levs = 8, ylab = 'Depth (m)',
+ctd_plot <- function(dat_in, var_plo, date = NULL, date_col = 'Date', rngs_in = NULL,
+  num_levs = 8, ylab = 'Depth (m)',
   xlab = 'Channel distance from P01 to P09 (km)', var_lab = NULL,
   cols = c('tomato', 'lightblue', 'lightgreen','green'),
   ncol = 100){
@@ -42,6 +45,18 @@ ctd_plot <- function(dat_in, var_plo, rngs_in = NULL, num_levs = 8, ylab = 'Dept
 
   # size of intepolation grid on one axis
   num_int <- 200
+
+  # stop if multiple dates and no date selection variable
+  # otherwise select date
+  uni_dts <- unique(dat_in[, date_col])
+  if(length(uni_dts) > 1){
+    if(is.null(date)){
+      stop('Provide date if more than one sample date')
+    } else {
+      stopifnot(inherits(date, 'Date'))
+      dat_in <- dat_in[dat_in[, date_col] %in% date, ]
+    }
+  }
 
   # get relevant data from input, convert units for some
   dat_in <- dat_in[, c('Station', 'Depth', var_plo, 'dist')]

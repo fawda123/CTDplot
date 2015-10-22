@@ -4,15 +4,19 @@
 \alias{ctd_plot}
 \title{Contour plot for CTD data}
 \usage{
-ctd_plot(dat_in, var_plo, rngs_in = NULL, num_levs = 8,
-  ylab = "Depth (m)", xlab = "Channel distance from P01 to P09 (km)",
-  var_lab = NULL, cols = c("tomato", "lightblue", "lightgreen", "green"),
-  ncol = 100)
+ctd_plot(dat_in, var_plo, date = NULL, date_col = "Date", rngs_in = NULL,
+  num_levs = 8, ylab = "Depth (m)",
+  xlab = "Channel distance from P01 to P09 (km)", var_lab = NULL,
+  cols = c("tomato", "lightblue", "lightgreen", "green"), ncol = 100)
 }
 \arguments{
 \item{dat_in}{ctd data along the tidal axis, as a \code{\link[base]{data.frame}}}
 
 \item{var_plo}{chr string of variable to plot from \code{dat_in}}
+
+\item{date}{chr string of date to plot, only required if input data has more than one sample date}
+
+\item{date_col}{chr string of name of date column}
 
 \item{rngs_in}{output from \code{\link{get_rngs}}, used to scale the colors, see examples}
 
