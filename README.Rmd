@@ -15,7 +15,7 @@ output:
 Create two-dimensional contour plots of CTD water quality data.  Currently only works with example data for Pensacola Bay, Florida. Install the package as follows:
 
 ```{r, eval = FALSE}
-install.packages(devtools)
+install.packages('devtools')
 library(devtools)
 install_github('fawda123/CTDplot')
 library(CTDplot)

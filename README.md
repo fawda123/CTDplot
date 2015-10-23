@@ -9,7 +9,7 @@ Create two-dimensional contour plots of CTD water quality data.  Currently only 
 
 
 ```r
-install.packages(devtools)
+install.packages('devtools')
 library(devtools)
 install_github('fawda123/CTDplot')
 library(CTDplot)
