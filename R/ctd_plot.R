@@ -138,7 +138,7 @@ ctd_plot <- function(dat_in, var_plo, date = NULL, date_col = 'Date', rngs_in = 
     }
 
   # plot margins
-  par(new = "TRUE", plt = c(0.08,0.89,0.2,0.9), las = 1, cex.axis = 1)
+  par(new = "TRUE", plt = c(0.08,0.89,0.23,0.9), las = 1, cex.axis = 1)
 
   # color function
   in_col <- colorRampPalette(cols)
@@ -194,7 +194,7 @@ ctd_plot <- function(dat_in, var_plo, date = NULL, date_col = 'Date', rngs_in = 
 
   ##
   # legend
-  par(new = "TRUE", plt = c(0.91,0.95,0.2,0.9), las = 1, cex.axis = 1)
+  par(new = "TRUE", plt = c(0.91,0.95,0.23,0.9), las = 1, cex.axis = 1)
   filled_legend(x.val, y.val, rotate(z.val), color.palette = in_col, xlab = "",
     nlevels = levs,
     ylab = "",

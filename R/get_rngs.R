@@ -10,8 +10,7 @@ get_rngs <- function(dat_in){
 
   dat_in <- do.call('rbind', dat_in)
 
-  out <- apply(dat_in[,c('Temp', 'Salinity', 'SigmaT', 'DO', 'DOsat',
-      'Fluor', 'Turb', 'CDOM')],
+  out <- apply(dat_in[, !names(dat_in) %in% c('Station', 'Date', 'Depth', 'dist', 'DateTimeStamp')],
     2, range)
 
   out <- data.frame(out)
