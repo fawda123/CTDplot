@@ -10,14 +10,15 @@
 
 
 
+
 <title></title>
 
-<script src="README_files/jquery-1.11.0/jquery.min.js"></script>
+<script src="README_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="README_files/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet" />
-<script src="README_files/bootstrap-3.3.1/js/bootstrap.min.js"></script>
-<script src="README_files/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
-<script src="README_files/bootstrap-3.3.1/shim/respond.min.js"></script>
+<link href="README_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="README_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="README_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="README_files/bootstrap-3.3.5/shim/respond.min.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <link rel="stylesheet"
@@ -39,6 +40,34 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
 </head>
 
 <body>
@@ -53,14 +82,43 @@ code {
   color: inherit;
   background-color: rgba(0, 0, 0, 0.04);
 }
-img { 
-  max-width:100%; 
-  height: auto; 
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
 }
 </style>
+
+
+
 <div class="container-fluid main-container">
 
+<!-- tabsets -->
+<script src="README_files/navigation-1.1/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
 
+<!-- code folding -->
+
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
 
 
 <div id="ctdplot" class="section level2">
@@ -75,19 +133,21 @@ install_github(&#39;fawda123/CTDplot&#39;)
 library(CTDplot)</code></pre>
 <pre class="r"><code># default plot
 ctd_plot(ctd_ex1, &#39;Salinity&#39;)</code></pre>
-<p><img src="README_files/figure-html/unnamed-chunk-3-1.png" /></p>
+<p><img src="README_files/figure-html/unnamed-chunk-3-1.png" /><!-- --></p>
 <pre class="r"><code># make color ramp match contour categories in legend
 ctd_plot(ctd_ex1, &#39;Salinity&#39;, ncol = 8)</code></pre>
-<p><img src="README_files/figure-html/unnamed-chunk-3-2.png" /></p>
+<p><img src="README_files/figure-html/unnamed-chunk-3-2.png" /><!-- --></p>
 <pre class="r"><code># change colors
 ctd_plot(ctd_ex1, &#39;Salinity&#39;, cols = c(&#39;Blue&#39;, &#39;Purple&#39;, &#39;Orange&#39;))</code></pre>
-<p><img src="README_files/figure-html/unnamed-chunk-3-3.png" /></p>
+<p><img src="README_files/figure-html/unnamed-chunk-3-3.png" /><!-- --></p>
 <pre class="r"><code># plot two dates with same color scaling
 dat &lt;- list(ctd_ex1, ctd_ex2)
 ctd_plotmult(dat, &#39;Salinity&#39;, var_labs = c(&#39;April&#39;, &#39;May&#39;))</code></pre>
-<p><img src="README_files/figure-html/unnamed-chunk-4-1.png" /></p>
+<p><img src="README_files/figure-html/unnamed-chunk-4-1.png" /><!-- --></p>
 </div>
 </div>
+
+
 
 
 </div>
@@ -98,6 +158,7 @@ ctd_plotmult(dat, &#39;Salinity&#39;, var_labs = c(&#39;April&#39;, &#39;May&#39
 $(document).ready(function () {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 });
+
 
 </script>
 

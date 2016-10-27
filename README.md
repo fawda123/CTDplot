@@ -22,21 +22,21 @@ library(CTDplot)
 ctd_plot(ctd_ex1, 'Salinity')
 ```
 
-![](README_files/figure-html/unnamed-chunk-3-1.png) 
+![](README_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
 
 ```r
 # make color ramp match contour categories in legend
 ctd_plot(ctd_ex1, 'Salinity', ncol = 8)
 ```
 
-![](README_files/figure-html/unnamed-chunk-3-2.png) 
+![](README_files/figure-html/unnamed-chunk-3-2.png)<!-- -->
 
 ```r
 # change colors
 ctd_plot(ctd_ex1, 'Salinity', cols = c('Blue', 'Purple', 'Orange'))
 ```
 
-![](README_files/figure-html/unnamed-chunk-3-3.png) 
+![](README_files/figure-html/unnamed-chunk-3-3.png)<!-- -->
 
 ```r
 # plot two dates with same color scaling
@@ -44,4 +44,4 @@ dat <- list(ctd_ex1, ctd_ex2)
 ctd_plotmult(dat, 'Salinity', var_labs = c('April', 'May'))
 ```
 
-![](README_files/figure-html/unnamed-chunk-4-1.png) 
+![](README_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
