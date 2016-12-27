@@ -6,18 +6,23 @@ Date: 2015-11-05
 Author: Marcus W. Beck [aut, cre]
 Maintainer: Marcus W. Beck <mbafs2012@gmail.com>
 Description: Plot CTD water quality data along an estuarine axis.
-  Values are linearly interpolated between sample stations and
-  across vertical profiles.  Sample stations are assumed to represent
-  the primary longitudinal axis of an estuary.
+    Values are linearly interpolated between sample stations and
+    across vertical profiles.  Sample stations are assumed to represent
+    the primary longitudinal axis of an estuary.
 BugReports: https://github.com/fawda123/CTDplot/issues
 License: CC0
 Imports:
-  fields,
-  reshape2,
-  zoo
+    dplyr,
+    fields,
+    geosphere,
+    ggmap,
+    ggplot2,
+    reshape2,
+    zoo
 LazyData: true
 Depends:
     R (>= 3.2.0)
 Authors@R: person(given = "Marcus W.", family = "Beck",
     role = c("aut","cre"),
     email = "mbafs2012@gmail.com")
+RoxygenNote: 5.0.1

@@ -5,6 +5,7 @@
 #'
 #' @param dat_in ctd data along the tidal axis, as a \code{\link[base]{data.frame}}
 #' @param var_plo chr string of variable to plot from \code{dat_in}
+#' @param dep_in depth soundings from bathymetric soundings, see \code{\link{get_depths}}
 #' @param date chr string of date to plot, only required if input data has more than one sample date
 #' @param date_col chr string of name of date column
 #' @param rngs_in output from \code{\link{get_rngs}}, used to scale the colors, see examples
@@ -33,7 +34,7 @@
 #'
 #' # change colors
 #' ctd_plot(ctd_ex1, 'Salinity', cols = c('Blue', 'Purple', 'Orange'))
-ctd_plot <- function(dat_in, var_plo, date = NULL, date_col = 'Date', rngs_in = NULL,
+ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Date', rngs_in = NULL,
   num_levs = 8, ylab = 'Depth (m)',
   xlab = 'Channel distance from P01 to P09 (km)', var_lab = NULL,
   cols = c('tomato', 'lightblue', 'lightgreen','green'),
@@ -62,6 +63,9 @@ ctd_plot <- function(dat_in, var_plo, date = NULL, date_col = 'Date', rngs_in = 
   dat_in <- dat_in[, c('Station', 'Depth', var_plo, 'dist')]
 
   dat_in$Depth <- -1 * dat_in$Depth
+
+  # subset maxd by data
+  maxdtmp <- maxd[maxd$tran_km <= max(dat_in$dist), ]
 
   # for plotting station location
   top <- unique(dat_in[, c('Station', 'dist')])
@@ -119,9 +123,10 @@ ctd_plot <- function(dat_in, var_plo, date = NULL, date_col = 'Date', rngs_in = 
   levs <- num_levs
 
   # mask z.val so correct col contours show up
+
   mask_grd <- sapply(1:num_int,
     function(x){
-      dep_chk <- approx(maxd$mllw_m, n = num_int)$y
+      dep_chk <- approx(maxdtmp$mllw_m, n = num_int)$y
       out <- rep(NA, num_int)
       out[rev(y.val) >= (dep_chk[x])- 0.75] <- 1
       return(out)
@@ -148,7 +153,7 @@ ctd_plot <- function(dat_in, var_plo, date = NULL, date_col = 'Date', rngs_in = 
     color.palette = in_col,
     ylab = '', xlab = '',
     nlevels = ncol, # for smoothed colors
-    axes = F)
+    axes = F, xlim = c(0, max(depth_tran$tran_km)))
   contour(x = x.val, y = y.val, z = rotate(z.val), nlevels=levs,
     axes = F, add = T)
 
@@ -176,7 +181,7 @@ ctd_plot <- function(dat_in, var_plo, date = NULL, date_col = 'Date', rngs_in = 
     tick = F, line = -1)
 
   # masking depth
-  poly.x <- approx(x.val, n = nrow(maxd))$y
+  poly.x <- approx(seq(0, max(maxd$tran_km), length = num_int), n = nrow(maxd))$y
   with(maxd,
     polygon(
       c(poly.x, rev(poly.x)),
