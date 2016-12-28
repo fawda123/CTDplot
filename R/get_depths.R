@@ -7,6 +7,7 @@
 #' @param expand numeric for expanding sample size of CTD points
 #' @param plot logical to return plot of matched points
 #' @param show_bath logical to show bathymetric depth points on the plot
+#' @param show_stat logical to show stations on the plot
 #' @param zoom numeric for map zoom, passed to \code{\link[ggmap]{get_stamenmap}}
 #'
 #' @details
@@ -21,13 +22,13 @@
 #'
 #' @export
 #'
-#' @import dplyr geosphere ggmap ggplot2
+#' @import dplyr geosphere ggmap ggplot2 ggrepel
 #'
 #' @examples
 #' \dontrun{
 #' get_depths(ctd_ex1, PB_dep_pts)
 #' }
-get_depths <- function(ctd_pts, dep_pts, expand = 200, plot = FALSE, show_bath = TRUE, zoom = 12){
+get_depths <- function(ctd_pts, dep_pts, expand = 200, plot = FALSE, show_bath = TRUE, show_stat = TRUE, zoom = 12){
 
   # get unique locations, max depth at each location
   ctd_pts <- select(ctd_pts, Station, Long, Lat, Depth) %>%
@@ -112,6 +113,18 @@ get_depths <- function(ctd_pts, dep_pts, expand = 200, plot = FALSE, show_bath =
       p <- pbase +
         geom_point(data = out, aes(x = Long, y = Lat, fill = Depth), pch = 21, size = 3, colour = 'black', alpha = 0.8) +
         scale_fill_distiller(palette = 'Spectral')
+
+    }
+
+    # add stations
+    if(show_stat){
+
+      p <- p +
+        geom_label_repel(data = ctd_pts, aes(x = Long, y = Lat, label = Station),
+          point.padding = grid::unit(0, "lines"),
+          box.padding = unit(3, "lines"),
+          alpha = 0.8
+        )
 
     }
 
