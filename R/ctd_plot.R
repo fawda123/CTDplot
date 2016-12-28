@@ -5,15 +5,15 @@
 #'
 #' @param dat_in ctd data along the tidal axis, as a \code{\link[base]{data.frame}}
 #' @param var_plo chr string of variable to plot from \code{dat_in}
-#' @param dep_in depth soundings from bathymetric soundings, see \code{\link{get_depths}}
+#' @param dep_in depth soundings from bathymetric soundings
 #' @param date chr string of date to plot, only required if input data has more than one sample date
 #' @param date_col chr string of name of date column
 #' @param rngs_in output from \code{\link{get_rngs}}, used to scale the colors, see examples
 #' @param num_levs numeric for number of contour levels
-#' @param expand numeric for expanding sample size of CTD points, see \code{\link{get_depth}}
+#' @param expand numeric for expanding sample size of CTD points, see \code{\link{get_depths}}
 #' @param chop numeric for trimming the depth values
 #' @param add numeric for scalar to add to all depth values
-#' @param window numeric for smoothing factor to reduce jaggedness of depth values, default does nothing, see \code{\link{get_depth}}
+#' @param window numeric for smoothing factor to reduce jaggedness of depth values, default does nothing
 #' @param xlab chr string for x-axis label
 #' @param ylab chr string for y-axis label
 #' @param var_lab optional chr string of text to include in the plot
@@ -29,7 +29,9 @@
 #'
 #' @export
 #'
-#' @details Raw data from the CTD are vertical profiles at unique stations.  The data are linearly interpolated along each profile and between stations to create a two-dimensional plotting surface.
+#' @details Raw data from the CTD are vertical profiles at unique stations.  The data are linearly interpolated along each profile and between stations to create a two-dimensional plotting surface. The \code{dat_in} data.frame must have three columns for longitude (\code{Long}), latitude (\code{Latitude}), and station name (\code{Station}).  The \code{dep_in} data.frame (if provided) should have three columns for longitude (\code{Long}), latitude (\code{Latitude}), and depth (\code{Depth}, non-negative).
+#'
+# All coordinates are assumed to be geographic decimal degrees using the WGS 1984 projection, negative longitude is west of the Prime Meridian.
 #'
 #' @references
 #' Hagy III, JD, Murrell, MC. 2007. Susceptibility of a northern Gulf of Mexico estuary to hypoxia: An analysis using box models. Estuarine, Coastal, and Shelf Science. 74:239-253.

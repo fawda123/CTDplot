@@ -16,7 +16,7 @@ ctd_plot(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = "Date",
 
 \item{var_plo}{chr string of variable to plot from \code{dat_in}}
 
-\item{dep_in}{depth soundings from bathymetric soundings, see \code{\link{get_depths}}}
+\item{dep_in}{depth soundings from bathymetric soundings}
 
 \item{date}{chr string of date to plot, only required if input data has more than one sample date}
 
@@ -26,9 +26,9 @@ ctd_plot(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = "Date",
 
 \item{num_levs}{numeric for number of contour levels}
 
-\item{expand}{numeric for expanding sample size of CTD points, see \code{\link{get_depth}}}
+\item{expand}{numeric for expanding sample size of CTD points, see \code{\link{get_depths}}}
 
-\item{window}{numeric for smoothing factor to reduce jaggedness of depth values, default does nothing, see \code{\link{get_depth}}}
+\item{window}{numeric for smoothing factor to reduce jaggedness of depth values, default does nothing}
 
 \item{chop}{numeric for trimming the depth values}
 
@@ -57,7 +57,7 @@ The contour plot
 Plot two-dimensional contours for CTD data by depth and distance
 }
 \details{
-Raw data from the CTD are vertical profiles at unique stations.  The data are linearly interpolated along each profile and between stations to create a two-dimensional plotting surface.
+Raw data from the CTD are vertical profiles at unique stations.  The data are linearly interpolated along each profile and between stations to create a two-dimensional plotting surface. The \code{dat_in} data.frame must have three columns for longitude (\code{Long}), latitude (\code{Latitude}), and station name (\code{Station}).  The \code{dep_in} data.frame (if provided) should have three columns for longitude (\code{Long}), latitude (\code{Latitude}), and depth (\code{Depth}, non-negative).
 }
 \examples{
 # default plot

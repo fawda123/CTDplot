@@ -11,6 +11,8 @@ ctd_plotmult(dat_in, var_plo, dep_in = NULL, var_labs = NULL, ...)
 
 \item{var_plo}{chr string of variable to plot from \code{dat_in}}
 
+\item{dep_in}{depth soundings from bathymetric soundings, see \code{\link{get_depths}}}
+
 \item{var_labs}{chr vector of optional text for each plot}
 
 \item{...}{additional arguments passed to \code{\link{ctd_plot}}}

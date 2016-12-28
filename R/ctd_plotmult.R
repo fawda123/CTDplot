@@ -5,6 +5,7 @@
 #'
 #' @param dat_in list of input ctd data where each element is a \code{\link[base]{data.frame}} of the vertical profiles for each station on a particular date
 #' @param var_plo chr string of variable to plot from \code{dat_in}
+#' @param dep_in depth soundings from bathymetric soundings, see \code{\link{get_depths}}
 #' @param var_labs chr vector of optional text for each plot
 #' @param ... additional arguments passed to \code{\link{ctd_plot}}
 #'
