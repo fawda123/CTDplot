@@ -4,7 +4,8 @@
 \alias{get_depths}
 \title{Match CTD points with closest hydro soundings}
 \usage{
-get_depths(ctd_pts, dep_pts, expand = 200, plot = FALSE, zoom = 12)
+get_depths(ctd_pts, dep_pts, expand = 200, plot = FALSE, show_bath = TRUE,
+  zoom = 12)
 }
 \arguments{
 \item{ctd_pts}{data.frame of CTD station locations, see details}
@@ -14,6 +15,8 @@ get_depths(ctd_pts, dep_pts, expand = 200, plot = FALSE, zoom = 12)
 \item{expand}{numeric for expanding sample size of CTD points}
 
 \item{plot}{logical to return plot of matched points}
+
+\item{show_bath}{logical to show bathymetric depth points on the plot}
 
 \item{zoom}{numeric for map zoom, passed to \code{\link[ggmap]{get_stamenmap}}}
 }
