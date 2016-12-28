@@ -27,6 +27,7 @@
 #' @examples
 #' \dontrun{
 #' get_depths(ctd_ex1, PB_dep_pts)
+#' get_depths(ctd_ex1, PB_dep_pts, plot = TRUE)
 #' }
 get_depths <- function(ctd_pts, dep_pts, expand = 200, plot = FALSE, show_bath = TRUE, show_stat = TRUE, zoom = 12){
 
@@ -123,7 +124,8 @@ get_depths <- function(ctd_pts, dep_pts, expand = 200, plot = FALSE, show_bath =
         geom_label_repel(data = ctd_pts, aes(x = Long, y = Lat, label = Station),
           point.padding = grid::unit(0, "lines"),
           box.padding = unit(3, "lines"),
-          alpha = 0.8
+          alpha = 0.8,
+          force = 2
         )
 
     }
