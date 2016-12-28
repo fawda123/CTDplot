@@ -24,18 +24,20 @@ library(CTDplot)
 ```{r echo = F, message = F, warning = F, results = 'hide'}
 devtools::load_all()
 ```
-```{r fig.height = 3, fig.width = 8, message = FALSE, warning = F, results = 'hide'}
+```{r fig.height = 4, fig.width = 10, message = FALSE, warning = F, results = 'hide'}
 # default plot
-ctd_plot(ctd_ex1, 'Salinity')
+ctd_plot(dat_in = ctd_ex1, var_plo = 'Salinity', dep_in = PB_dep_pts, window = 5, ylim = c(-12, 0))
 
 # make color ramp match contour categories in legend
-ctd_plot(ctd_ex1, 'Salinity', ncol = 8)
+ctd_plot(dat_in = ctd_ex1, var_plo = 'Salinity', dep_in = PB_dep_pts, ncol = 8, window = 5, ylim = c(-12, 0))
 
 # change colors
-ctd_plot(ctd_ex1, 'Salinity', cols = c('Blue', 'Purple', 'Orange'))
+ctd_plot(dat_in = ctd_ex1, var_plo = 'Salinity', dep_in = PB_dep_pts, cols = c('Blue', 'Purple', 'Orange'),
+  window = 5, ylim = c(-12, 0))
 ```
-```{r fig.height = 6, fig.width = 8, message = FALSE, warning = F, results = 'hide'}
+```{r fig.height = 8, fig.width = 10, message = FALSE, warning = F, results = 'hide'}
 # plot two dates with same color scaling
 dat <- list(ctd_ex1, ctd_ex2)
-ctd_plotmult(dat, 'Salinity', var_labs = c('April', 'May'))
+ctd_plotmult(dat, 'Salinity', PB_dep_pts, var_labs = c('April', 'May'),
+  window = 5, ylim = c(-12, 0))
 ```

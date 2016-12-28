@@ -4,19 +4,14 @@
 \alias{get_depths}
 \title{Match CTD points with closest hydro soundings}
 \usage{
-get_depths(ctd_pts, dep_pts, expand = 10, add = 0, window = 1,
-  plot = FALSE, zoom = 12)
+get_depths(ctd_pts, dep_pts, expand = 200, plot = FALSE, zoom = 12)
 }
 \arguments{
 \item{ctd_pts}{data.frame of CTD station locations, see details}
 
 \item{dep_pts}{data.frame of depth sounding points, see details}
 
-\item{expand}{numeric for expansion factor for CTD points}
-
-\item{add}{numeric for scalar to add to all depth values}
-
-\item{window}{numeric for smoothing factor to reduce jaggedness of depth values, default does nothing}
+\item{expand}{numeric for expanding sample size of CTD points}
 
 \item{plot}{logical to return plot of matched points}
 
@@ -31,12 +26,13 @@ Match CTD points with closest hydro soundings
 \details{
 CTD station locations are linearly expanded and then matched to the nearests points in the depth sounding layer.  This is done to create a smoother depth gradient in the contour plot.  The \code{ctd_pts} data.frame must have three columns for longitude (\code{Long}), latitude (\code{Latitude}), and station name (\code{Station}).  The \code{dep_pts} data.frame should have three columns for longitude (\code{Long}), latitude (\code{Latitude}), and depth (\code{Depth}, non-negative).  The \code{plot} argument can be used to verify the match of the interpolated points with the depth soundings.
 
+The maximum depths and locations of the original stations are included in the search for the linearly expanded locations. This is done to create a seamless match between the observed depth and the hydrological depth soundings, i.e., locations at each station should have depths equal to observed and the interpolated points close to a station should have depth similar to the observed.
+
 All coordinates are assumed to be geographic decimal degrees using the WGS 1984 projection, negative longitude is west of the Prime Meridian.
 }
 \examples{
-data(PB_pts)
-data(PB_dep_pts)
-
-get_depths(PB_pts, PB_dep_pts)
+\dontrun{
+get_depths(ctd_ex1, PB_dep_pts)
+}
 }
 

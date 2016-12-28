@@ -16,8 +16,8 @@
 #' dat <- list(ctd_ex1, ctd_ex2)
 #'
 #' # default plot
-#' ctd_plotmult(dat, 'Salinity', var_labs = c('April', 'May'))
-ctd_plotmult <- function(dat_in, var_plo, var_labs = NULL, ...){
+#' ctd_plotmult(dat, 'Salinity', PB_dep_pts, var_labs = c('April', 'May'))
+ctd_plotmult <- function(dat_in, var_plo, dep_in = NULL, var_labs = NULL, ...){
 
   # range values
   rngs <- get_rngs(dat_in)
@@ -25,6 +25,6 @@ ctd_plotmult <- function(dat_in, var_plo, var_labs = NULL, ...){
   par(mfrow = c(length(dat_in), 1))
 
   for(i in 1:length(dat_in))
-    ctd_plot(dat_in[[i]], var_plo, var_lab = var_labs[i], rngs_in = rngs, ...)
+    ctd_plot(dat_in[[i]], var_plo, dep_in, var_lab = var_labs[i], rngs_in = rngs, ...)
 
 }

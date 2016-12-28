@@ -3,10 +3,12 @@
 #'
 #' Example CTD data at nine stations on the longitudinal axis of the Escambia Bay sub-basin of Pensacola Bay, Florida.
 #'
-#' @format A \code{\link[base]{data.frame}} with 129 rows and 2 variables:
+#' @format A \code{\link[base]{data.frame}} with 171 rows and 13 variables:
 #' \describe{
 #'   \item{\code{Station}}{chr, station name}
 #'   \item{\code{Date}}{Date, Date of the survey}
+#'   \item{\code{Long}}{num, longitude of the station in geographic coordinates}
+#'   \item{\code{Lat}}{num, latitude of the station in geographic coordinates}
 #'   \item{\code{Depth}}{num, depth along the vertical profile (m)}
 #'   \item{\code{Temp}}{num, water temperature}
 #'   \item{\code{Salinity}}{num, salinity}
@@ -16,8 +18,6 @@
 #'   \item{\code{Fluor}}{num, fluorescence}
 #'   \item{\code{Turb}}{num, turbidity}
 #'   \item{\code{CDOM}}{num, colored dissolved organic matter}
-#'   \item{\code{DateTimeStamp}}{POSIXct, date and time of the profile}
-#'   \item{\code{dist}}{num, distance of the station along the axis}
 #' }
 #'
 #' @examples

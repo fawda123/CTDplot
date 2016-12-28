@@ -5,9 +5,11 @@
 \title{Contour plot for CTD data}
 \usage{
 ctd_plot(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = "Date",
-  rngs_in = NULL, num_levs = 8, ylab = "Depth (m)",
-  xlab = "Channel distance from P01 to P09 (km)", var_lab = NULL,
-  cols = c("tomato", "lightblue", "lightgreen", "green"), ncol = 100)
+  rngs_in = NULL, num_levs = 8, expand = 200, window = 1, chop = 0,
+  add = 0, xlab = "Channel distance from P01 to P09 (km)",
+  ylab = "Depth (m)", var_lab = NULL, cols = c("tomato", "lightblue",
+  "lightgreen", "green"), msk_col = "grey", cont_ext = 0.5, ylim = NULL,
+  ncol = 100)
 }
 \arguments{
 \item{dat_in}{ctd data along the tidal axis, as a \code{\link[base]{data.frame}}}
@@ -24,13 +26,27 @@ ctd_plot(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = "Date",
 
 \item{num_levs}{numeric for number of contour levels}
 
-\item{ylab}{chr string for y-axis label}
+\item{expand}{numeric for expanding sample size of CTD points, see \code{\link{get_depth}}}
+
+\item{window}{numeric for smoothing factor to reduce jaggedness of depth values, default does nothing, see \code{\link{get_depth}}}
+
+\item{chop}{numeric for trimming the depth values}
+
+\item{add}{numeric for scalar to add to all depth values}
 
 \item{xlab}{chr string for x-axis label}
+
+\item{ylab}{chr string for y-axis label}
 
 \item{var_lab}{optional chr string of text to include in the plot}
 
 \item{cols}{chr string of colors for the plot}
+
+\item{msk_col}{chr string for color of masking depth}
+
+\item{cont_ext}{numeric (meters) for reducing the mask size for the interpolated contour plot, this can be useful to remove white spaces that are not covered by the masking depth but may have an effect on the gradient in the color ramp}
+
+\item{ylim}{numeric vector for y-axis limits, values must be negative for inreasing depth}
 
 \item{ncol}{numeric indicating degree of smoothing for the color palette}
 }
@@ -41,11 +57,11 @@ The contour plot
 Plot two-dimensional contours for CTD data by depth and distance
 }
 \details{
-Raw data from the CTD are vertical profiles at unique stations.  The data are linearly interpolated along each profile and between stations to create a two-dimensional plotting surface.  The function currently only works for Pensacola Bay using hard-coded depth transect data.
+Raw data from the CTD are vertical profiles at unique stations.  The data are linearly interpolated along each profile and between stations to create a two-dimensional plotting surface.
 }
 \examples{
 # default plot
-ctd_plot(ctd_ex1, 'Salinity')
+ctd_plot(ctd_ex1, var_plo = 'Salinity', dep_in = PB_dep_pts)
 
 # make color ramp match contour categories in legend
 ctd_plot(ctd_ex1, 'Salinity', ncol = 8)

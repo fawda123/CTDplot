@@ -19,21 +19,22 @@ library(CTDplot)
 
 ```r
 # default plot
-ctd_plot(ctd_ex1, 'Salinity')
+ctd_plot(dat_in = ctd_ex1, var_plo = 'Salinity', dep_in = PB_dep_pts, window = 5, ylim = c(-12, 0))
 ```
 
 ![](README_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
 
 ```r
 # make color ramp match contour categories in legend
-ctd_plot(ctd_ex1, 'Salinity', ncol = 8)
+ctd_plot(dat_in = ctd_ex1, var_plo = 'Salinity', dep_in = PB_dep_pts, ncol = 8, window = 5, ylim = c(-12, 0))
 ```
 
 ![](README_files/figure-html/unnamed-chunk-3-2.png)<!-- -->
 
 ```r
 # change colors
-ctd_plot(ctd_ex1, 'Salinity', cols = c('Blue', 'Purple', 'Orange'))
+ctd_plot(dat_in = ctd_ex1, var_plo = 'Salinity', dep_in = PB_dep_pts, cols = c('Blue', 'Purple', 'Orange'),
+  window = 5, ylim = c(-12, 0))
 ```
 
 ![](README_files/figure-html/unnamed-chunk-3-3.png)<!-- -->
@@ -41,7 +42,8 @@ ctd_plot(ctd_ex1, 'Salinity', cols = c('Blue', 'Purple', 'Orange'))
 ```r
 # plot two dates with same color scaling
 dat <- list(ctd_ex1, ctd_ex2)
-ctd_plotmult(dat, 'Salinity', var_labs = c('April', 'May'))
+ctd_plotmult(dat, 'Salinity', PB_dep_pts, var_labs = c('April', 'May'),
+  window = 5, ylim = c(-12, 0))
 ```
 
 ![](README_files/figure-html/unnamed-chunk-4-1.png)<!-- -->

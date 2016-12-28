@@ -4,7 +4,7 @@
 \alias{ctd_plotmult}
 \title{Multiple contour plots for CTD data}
 \usage{
-ctd_plotmult(dat_in, var_plo, var_labs = NULL, ...)
+ctd_plotmult(dat_in, var_plo, dep_in = NULL, var_labs = NULL, ...)
 }
 \arguments{
 \item{dat_in}{list of input ctd data where each element is a \code{\link[base]{data.frame}} of the vertical profiles for each station on a particular date}
@@ -25,6 +25,6 @@ Multiple contour plots for CTD data with same color scale
 dat <- list(ctd_ex1, ctd_ex2)
 
 # default plot
-ctd_plotmult(dat, 'Salinity', var_labs = c('April', 'May'))
+ctd_plotmult(dat, 'Salinity', PB_dep_pts, var_labs = c('April', 'May'))
 }
 
