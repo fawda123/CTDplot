@@ -13,6 +13,7 @@
 #' @param expand numeric for expanding sample size of CTD points, see \code{\link{get_depths}}
 #' @param chop numeric for trimming the depth values
 #' @param add numeric for scalar to add to all depth values
+#' @param txt_scl numeric for scaling all text labels
 #' @param window numeric for smoothing factor to reduce jaggedness of depth values, default does nothing
 #' @param xlab chr string for x-axis label
 #' @param ylab chr string for y-axis label
@@ -46,7 +47,7 @@
 #' # change colors
 #' ctd_plot(ctd_ex1, 'Salinity', cols = c('Blue', 'Purple', 'Orange'))
 ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Date', rngs_in = NULL,
-  num_levs = 8, expand = 200, window = 1, chop = 0, add = 0,
+  num_levs = 8, expand = 200, window = 1, chop = 0, add = 0, txt_scl = 1,
   xlab = 'Channel distance from P01 to P09 (km)', ylab = 'Depth (m)', var_lab = NULL,
   cols = c('tomato', 'lightblue', 'lightgreen','green'), msk_col = 'grey',
   cont_ext = 0.5,
@@ -173,7 +174,7 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
     }
 
   # plot margins
-  par(new = "TRUE", plt = c(0.08,0.89,0.23,0.9), las = 1, cex.axis = 1)
+  par(new = "TRUE", plt = c(0.08,0.89,0.23,0.9), las = 1, cex.axis = 1 * txt_scl)
 
   # color function
   in_col <- colorRampPalette(cols)
@@ -191,29 +192,29 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
     xlim = c(0, max(dep_pts$Dist)),
     ylim = ylim)
   contour(x = x.val, y = y.val, z = rotate(z.val), nlevels=levs,
-    axes = F, add = T)
+    axes = F, add = T, labcex = 0.6 * txt_scl)
 
   ##
   # axis labels
 
   # xlab
-  mtext(text = xlab, side = 1, line = 2)
+  mtext(text = xlab, side = 1, line = 2, cex = txt_scl)
 
   # ylab
-  mtext(text = ylab, side = 2, line = 2, las = 0)
+  mtext(text = ylab, side = 2, line = 2, las = 0, cex = txt_scl)
 
   ##
   # axes
 
   # x
-  axis(side = 1)
+  axis(side = 1, cex.axis = txt_scl)
 
   # y
   y.axs <- axTicks(2, par('yaxp'))
-  axis(side = 2, at = y.axs, labels = abs(y.axs))
+  axis(side = 2, at = y.axs, labels = abs(y.axs), cex.axis = txt_scl)
 
   # top
-  axis(side = 3, at = top$Dist, labels = top$Station, cex.axis = 0.7,
+  axis(side = 3, at = top$Dist, labels = top$Station, cex.axis = 0.7 * txt_scl,
     tick = F, line = -1)
 
   # masking depth
@@ -228,13 +229,13 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
   # variable name -lower left
   if(!is.null(var_lab))
     text(x = par('usr')[1], par('usr')[3] + 1, labels = var_lab, pos = 4,
-      cex = 1.5)
+      cex = 1.5 * txt_scl)
 
   box()
 
   ##
   # legend
-  par(new = "TRUE", plt = c(0.91,0.95,0.23,0.9), las = 1, cex.axis = 1)
+  par(new = "TRUE", plt = c(0.91,0.95,0.23,0.9), las = 1, cex.axis = 1 * txt_scl)
   filled_legend(x.val, y.val, rotate(z.val), color.palette = in_col, xlab = "",
     nlevels = levs,
     ylab = "",

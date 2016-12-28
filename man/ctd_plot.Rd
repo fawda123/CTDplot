@@ -6,7 +6,7 @@
 \usage{
 ctd_plot(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = "Date",
   rngs_in = NULL, num_levs = 8, expand = 200, window = 1, chop = 0,
-  add = 0, xlab = "Channel distance from P01 to P09 (km)",
+  add = 0, txt_scl = 1, xlab = "Channel distance from P01 to P09 (km)",
   ylab = "Depth (m)", var_lab = NULL, cols = c("tomato", "lightblue",
   "lightgreen", "green"), msk_col = "grey", cont_ext = 0.5, ylim = NULL,
   ncol = 100)
@@ -33,6 +33,8 @@ ctd_plot(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = "Date",
 \item{chop}{numeric for trimming the depth values}
 
 \item{add}{numeric for scalar to add to all depth values}
+
+\item{txt_scl}{numeric for scaling all text labels}
 
 \item{xlab}{chr string for x-axis label}
 
