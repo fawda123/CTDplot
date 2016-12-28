@@ -126,26 +126,28 @@ $(document).ready(function () {
 <div id="marcus-w.-beck-mbafs2012gmail.com" class="section level4">
 <h4><em>Marcus W. Beck, <a href="mailto:mbafs2012@gmail.com">mbafs2012@gmail.com</a></em></h4>
 <p><a href="https://travis-ci.org/fawda123/CTDplot"><img src="https://travis-ci.org/fawda123/CTDplot.svg?branch=master" alt="Travis-CI Build Status" /></a></p>
-<p>Create two-dimensional contour plots of CTD water quality data. Currently only works with example data for Pensacola Bay, Florida. Install the package as follows:</p>
+<p>Create two-dimensional contour plots of CTD water quality data. Install the package as follows:</p>
 <pre class="r"><code>install.packages(&#39;devtools&#39;)
 library(devtools)
 install_github(&#39;fawda123/CTDplot&#39;)
 library(CTDplot)</code></pre>
-<pre class="r"><code># default plot
-ctd_plot(dat_in = ctd_ex1, var_plo = &#39;Salinity&#39;, dep_in = PB_dep_pts, window = 5, ylim = c(-12, 0))</code></pre>
+<p>Minimal data requirements to use the functions are CTD observations at stations on a longitudinal axis. Bathymetric depth soundings at points along the sampling axis can also be used to improve the plot. The plotting function first creates new points along the sampling axis for interpolating CTD observations throughout space. The new sampling axis is matched to the nearest depth sounding or actual bottom depth at the closest CTD sampling station. If depth soundings are not provided, the bottom depth at each CTD station is used to interpolate a continuous depth along the sampling axis. The following shows matching of a sampling axis to depth soundings. The depth soundings are sub-sampled for illustration. The new sampling axis is colored by matched depth and the hydrological soundings are shown as black points.</p>
+<pre class="r"><code>nr &lt;- 1:nrow(PB_dep_pts)
+dep_smp &lt;- PB_dep_pts[sample(nr, 200, replace = F), ]
+get_depths(ctd_ex1, dep_smp, expand = 100, plot = T)</code></pre>
 <p><img src="README_files/figure-html/unnamed-chunk-3-1.png" /><!-- --></p>
-<pre class="r"><code># make color ramp match contour categories in legend
-ctd_plot(dat_in = ctd_ex1, var_plo = &#39;Salinity&#39;, dep_in = PB_dep_pts, ncol = 8, window = 5, ylim = c(-12, 0))</code></pre>
-<p><img src="README_files/figure-html/unnamed-chunk-3-2.png" /><!-- --></p>
-<pre class="r"><code># change colors
-ctd_plot(dat_in = ctd_ex1, var_plo = &#39;Salinity&#39;, dep_in = PB_dep_pts, cols = c(&#39;Blue&#39;, &#39;Purple&#39;, &#39;Orange&#39;),
-  window = 5, ylim = c(-12, 0))</code></pre>
-<p><img src="README_files/figure-html/unnamed-chunk-3-3.png" /><!-- --></p>
+<p>The main function is <code>ctd_plot</code>, which can be used with or without bathymetric data.</p>
+<pre class="r"><code># using bottom values of CTD observations
+ctd_plot(dat_in = ctd_ex1, var_plo = &#39;Salinity&#39;)</code></pre>
+<p><img src="README_files/figure-html/unnamed-chunk-4-1.png" /><!-- --></p>
+<pre class="r"><code>#  with bathymetric data
+ctd_plot(dat_in = ctd_ex1, var_plo = &#39;Salinity&#39;, dep_in = PB_dep_pts, window = 5, ylim = c(-12, 0))</code></pre>
+<p><img src="README_files/figure-html/unnamed-chunk-4-2.png" /><!-- --></p>
 <pre class="r"><code># plot two dates with same color scaling
 dat &lt;- list(ctd_ex1, ctd_ex2)
 ctd_plotmult(dat, &#39;Salinity&#39;, PB_dep_pts, var_labs = c(&#39;April&#39;, &#39;May&#39;),
   window = 5, ylim = c(-12, 0))</code></pre>
-<p><img src="README_files/figure-html/unnamed-chunk-4-1.png" /><!-- --></p>
+<p><img src="README_files/figure-html/unnamed-chunk-5-1.png" /><!-- --></p>
 </div>
 </div>
 

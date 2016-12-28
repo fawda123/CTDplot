@@ -67,8 +67,18 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
   dat_in <- dat_in[, c('Station', 'Long', 'Lat', 'Depth', var_plo)]
 
   # extrapolate depths along the axis
-  dep_pts <- get_depths(dat_in, dep_in, expand = expand) %>%
-    mutate(Depth = -1 * Depth)
+  if(is.null(dep_in)){
+
+    dep_pts <- get_bdepths(dat_in, expand = expand)
+
+  } else {
+
+    dep_pts <- get_depths(dat_in, dep_in, expand = expand)
+
+  }
+
+  # invert depth
+  dep_pts <- mutate(dep_pts, Depth = -1 * Depth)
 
   # for plotting station location
   top <- filter(dep_pts, !is.na(Station)) %>%
@@ -87,11 +97,15 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
     dat_in <- rbind(dat_in, c(0, rep(NA, ncol(dat_in)-1)))
 
   # add rows for max depth of polygon box
-  add_dep <- seq(min(dep_pts$Depth), min(dat_in$Depth) - 0.25, by = 0.25)
-  add_dep <- c(add_dep, rep(NA, length = length(add_dep) * (ncol(dat_in)-1)))
-  add_dep <-  matrix(add_dep, ncol = ncol(dat_in), byrow = F)
-  add_dep <- as.data.frame(add_dep); names(add_dep) <- names(dat_in)
-  dat_in <- rbind(add_dep, dat_in)
+  minint <- min(dep_pts$Depth)
+  minobs <- min(dat_in$Depth) - 0.25
+  if(minint <= minobs){
+    add_dep <- seq(minint, minobs, by = 0.25)
+    add_dep <- c(add_dep, rep(NA, length = length(add_dep) * (ncol(dat_in)-1)))
+    add_dep <-  matrix(add_dep, ncol = ncol(dat_in), byrow = F)
+    add_dep <- as.data.frame(add_dep); names(add_dep) <- names(dat_in)
+    dat_in <- rbind(add_dep, dat_in)
+  }
 
   # fill leading NA with earliest obs value
   dat_in <- zoo::na.locf(dat_in)
