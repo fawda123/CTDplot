@@ -48,7 +48,7 @@ ctd_plot(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = "Date",
 
 \item{cont_ext}{numeric (meters) for reducing the mask size for the interpolated contour plot, this can be useful to remove white spaces that are not covered by the masking depth but may have an effect on the gradient in the color ramp}
 
-\item{ylim}{numeric vector for y-axis limits, values must be negative for inreasing depth}
+\item{ylim}{numeric vector for y-axis limits, values must be negative for increasing depth}
 
 \item{ncol}{numeric indicating degree of smoothing for the color palette}
 }

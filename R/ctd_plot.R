@@ -21,7 +21,7 @@
 #' @param cols chr string of colors for the plot
 #' @param msk_col chr string for color of masking depth
 #' @param cont_ext numeric (meters) for reducing the mask size for the interpolated contour plot, this can be useful to remove white spaces that are not covered by the masking depth but may have an effect on the gradient in the color ramp
-#' @param ylim numeric vector for y-axis limits, values must be negative for inreasing depth
+#' @param ylim numeric vector for y-axis limits, values must be negative for increasing depth
 #' @param ncol numeric indicating degree of smoothing for the color palette
 #'
 #' @return The contour plot
@@ -198,10 +198,10 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
   # axis labels
 
   # xlab
-  mtext(text = xlab, side = 1, line = 2, cex = txt_scl)
+  mtext(text = xlab, side = 1, line = 3, cex = txt_scl)
 
   # ylab
-  mtext(text = ylab, side = 2, line = 2, las = 0, cex = txt_scl)
+  mtext(text = ylab, side = 2, line = 3, las = 0, cex = txt_scl)
 
   ##
   # axes
@@ -228,7 +228,7 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
   ##
   # variable name -lower left
   if(!is.null(var_lab))
-    text(x = par('usr')[1], par('usr')[3] + 1, labels = var_lab, pos = 4,
+    text(x = par('usr')[1], 0.925 * par('usr')[3], labels = var_lab, pos = 4,
       cex = 1.5 * txt_scl)
 
   box()
