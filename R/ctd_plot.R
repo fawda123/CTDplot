@@ -54,6 +54,10 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
   ylim = NULL,
   ncol = 100){
 
+  # sanity check
+  if(window < 1)
+    stop('window must be greater than or equal to one')
+
   # stop if multiple dates and no date selection variable
   # otherwise select date
   uni_dts <- unique(dat_in[, date_col])
@@ -100,7 +104,7 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
     dat_in <- rbind(dat_in, c(0, rep(NA, ncol(dat_in)-1)))
 
   # add rows for max depth of polygon box
-  minint <- min(dep_pts$Depth)
+  minint <- min(c(ylim[1], min(dep_pts$Depth)))
   minobs <- min(dat_in$Depth) - 0.25
   if(minint <= minobs){
     add_dep <- seq(minint, minobs, by = 0.25)
