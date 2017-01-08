@@ -24,7 +24,9 @@ All coordinates are assumed to be geographic decimal degrees using the WGS 1984 
 }
 \examples{
 \dontrun{
-get_bdepths(ctd_ex1)
+dt <- as.Date('2014-04-21')
+toplo <- ctd[ctd$Date \%in\% dt, ]
+get_bdepths(toplo)
 }
 }
 

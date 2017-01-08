@@ -30,7 +30,7 @@
 #'
 #' @export
 #'
-#' @details Raw data from the CTD are vertical profiles at unique stations.  The data are linearly interpolated along each profile and between stations to create a two-dimensional plotting surface. The \code{dat_in} data.frame must have three columns for longitude (\code{Long}), latitude (\code{Latitude}), and station name (\code{Station}).  The \code{dep_in} data.frame (if provided) should have three columns for longitude (\code{Long}), latitude (\code{Latitude}), and depth (\code{Depth}, non-negative).
+#' @details Raw data from the CTD are vertical profiles at unique stations.  The data are linearly interpolated along each profile and between stations to create a two-dimensional plotting surface. The \code{dat_in} data.frame must have at a minimum six columns for date (\code{Date}), longitude (\code{Long}), latitude (\code{Lat}), station name (\code{Station}), depth (\code{Depth}, non-negative), and the variable to plot.  The \code{dep_in} data.frame (if provided) should have three columns for longitude (\code{Long}), latitude (\code{Latitude}), and depth (\code{Depth}, non-negative).
 #'
 # All coordinates are assumed to be geographic decimal degrees using the WGS 1984 projection, negative longitude is west of the Prime Meridian.
 #'
@@ -39,16 +39,17 @@
 #'
 #' @examples
 #' # default plot
-#' ctd_plot(ctd_ex1, var_plo = 'Salinity', dep_in = PB_dep_pts)
+#' dt <- '2014-04-21'
+#' ctd_plot(ctd, var_plo = 'Salinity', dep_in = PB_dep_pts, date = dt)
 #'
 #' # make color ramp match contour categories in legend
-#' ctd_plot(ctd_ex1, 'Salinity', ncol = 8)
+#' ctd_plot(ctd, 'Salinity', ncol = 8, date = dt)
 #'
 #' # change colors
-#' ctd_plot(ctd_ex1, 'Salinity', cols = c('Blue', 'Purple', 'Orange'))
+#' ctd_plot(ctd, 'Salinity', cols = c('Blue', 'Purple', 'Orange'), date = dt)
 ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Date', rngs_in = NULL,
-  num_levs = 8, expand = 200, window = 1, chop = 0, add = 0, txt_scl = 1,
-  xlab = 'Channel distance from P01 to P09 (km)', ylab = 'Depth (m)', var_lab = NULL,
+  num_levs = 8, expand = 200, window = 5, chop = 0, add = 0, txt_scl = 1,
+  xlab = 'Channel distance (km)', ylab = 'Depth (m)', var_lab = NULL,
   cols = c('tomato', 'lightblue', 'lightgreen','green'), msk_col = 'grey',
   cont_ext = 0.5,
   ylim = NULL,
@@ -58,6 +59,7 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
   if(window < 1)
     stop('window must be greater than or equal to one')
 
+
   # stop if multiple dates and no date selection variable
   # otherwise select date
   uni_dts <- unique(dat_in[, date_col])
@@ -65,7 +67,7 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
     if(is.null(date)){
       stop('Provide date if more than one sample date')
     } else {
-      stopifnot(inherits(date, 'Date'))
+      date <- as.Date(date)
       dat_in <- dat_in[dat_in[, date_col] %in% date, ]
     }
   }
@@ -185,7 +187,7 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
 
   # default ylim
   if(is.null(ylim))
-    ylim <- range(y.val)
+    ylim <- c(min(dep_pts$Depth), 0)
 
   # contour plot with isolines
   filled_contour(x = x.val, y = y.val, z = rotate(z.val),
@@ -219,7 +221,7 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
 
   # top
   axis(side = 3, at = top$Dist, labels = top$Station, cex.axis = 0.7 * txt_scl,
-    tick = F, line = -1)
+    tick = F, line = -0.75)
 
   # masking depth
   with(dep_pts,

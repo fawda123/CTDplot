@@ -29,20 +29,30 @@ Minimal data requirements to use the functions  are CTD observations at stations
 ```{r fig.height = 7, fig.width = 7, message = FALSE, warning = F, results = 'hide'}
 nr <- 1:nrow(PB_dep_pts)
 dep_smp <- PB_dep_pts[sample(nr, 200, replace = F), ]
-get_depths(ctd_ex1, dep_smp, expand = 100, plot = T)
+dt <- as.Date('2014-04-21')
+toplo <- ctd[ctd$Date %in% dt, ]
+get_depths(toplo, dep_smp, expand = 100, plot = T)
 ```
 
 The main function is `ctd_plot`, which can be used with or without bathymetric data. 
 ```{r fig.height = 4, fig.width = 10, message = FALSE, warning = F, results = 'hide'}
-# using bottom values of CTD observations
-ctd_plot(dat_in = ctd_ex1, var_plo = 'Salinity')
+dt <- as.Date('2014-04-21')
+ctd_plot(dat_in = ctd, var_plo = 'Salinity', date = dt)
 
 #  with bathymetric data
-ctd_plot(dat_in = ctd_ex1, var_plo = 'Salinity', dep_in = PB_dep_pts, window = 5, ylim = c(-12, 0))
+ctd_plot(dat_in = ctd, var_plo = 'Salinity', dep_in = PB_dep_pts, date = dt)
 ```
-```{r fig.height = 8, fig.width = 10, message = FALSE, warning = F, results = 'hide'}
+
+Plots across dates can also be scaled for comparison.
+```{r fig.height = 28, fig.width = 10, message = FALSE, warning = F, results = 'hide'}
 # plot two dates with same color scaling
-dat <- list(ctd_ex1, ctd_ex2)
-ctd_plotmult(dat, 'Salinity', PB_dep_pts, var_labs = c('April', 'May'),
-  window = 5, ylim = c(-12, 0))
+dat <- split(ctd, ctd$Date)
+labs <- names(dat)
+ctd_plotmult(dat, 'Salinity', PB_dep_pts, var_labs = labs, txt_scl = 1.5)
+```
+
+Bottom values across dates and stations can be compared with `ctd_bplot`.
+```{r fig.height = 4, fig.width = 10, message = FALSE, warning = F, results = 'hide'}
+ctd_bplot(ctd, var_plo = 'DO')
+ctd_bplot(ctd, var_plo = 'Salinity')
 ```

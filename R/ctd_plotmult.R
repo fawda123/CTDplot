@@ -14,10 +14,13 @@
 #' @export
 #'
 #' @examples
-#' dat <- list(ctd_ex1, ctd_ex2)
+#' \dontrun{
+#' dat <- split(ctd, ctd$Date)
 #'
 #' # default plot
-#' ctd_plotmult(dat, 'Salinity', PB_dep_pts, var_labs = c('April', 'May'))
+#' labs <- names(dat)
+#' ctd_plotmult(dat, 'Salinity', PB_dep_pts, var_labs = labs)
+#' }
 ctd_plotmult <- function(dat_in, var_plo, dep_in = NULL, var_labs = NULL, ...){
 
   # range values

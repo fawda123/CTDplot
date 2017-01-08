@@ -24,9 +24,12 @@ The contour plots with identical color scaling
 Multiple contour plots for CTD data with same color scale
 }
 \examples{
-dat <- list(ctd_ex1, ctd_ex2)
+\dontrun{
+dat <- split(ctd, ctd$Date)
 
 # default plot
-ctd_plotmult(dat, 'Salinity', PB_dep_pts, var_labs = c('April', 'May'))
+labs <- names(dat)
+ctd_plotmult(dat, 'Salinity', PB_dep_pts, var_labs = labs)
+}
 }
 

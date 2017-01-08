@@ -37,8 +37,10 @@ All coordinates are assumed to be geographic decimal degrees using the WGS 1984 
 }
 \examples{
 \dontrun{
-get_depths(ctd_ex1, PB_dep_pts)
-get_depths(ctd_ex1, PB_dep_pts, plot = TRUE)
+dt <- as.Date('2014-04-21')
+toplo <- ctd[ctd$Date \%in\% dt, ]
+get_depths(toplo, PB_dep_pts)
+get_depths(toplo, PB_dep_pts, plot = TRUE)
 }
 }
 

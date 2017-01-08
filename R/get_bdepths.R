@@ -19,7 +19,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' get_bdepths(ctd_ex1)
+#' dt <- as.Date('2014-04-21')
+#' toplo <- ctd[ctd$Date %in% dt, ]
+#' get_bdepths(toplo)
 #' }
 get_bdepths <- function(ctd_pts, expand = 200){
 
