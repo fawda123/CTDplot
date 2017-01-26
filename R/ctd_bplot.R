@@ -35,6 +35,8 @@ ctd_bplot <- function(dat_in, var_plo, date_col = 'Date',
   cols = c('tomato', 'lightblue', 'lightgreen','green'),
   ncol = 100){
 
+  dat_in <- data.frame(dat_in, stringsAsFactors = FALSE)
+  
   # stop if only one date
   uni_dts <- unique(dat_in[, date_col])
   if(length(uni_dts) == 1){

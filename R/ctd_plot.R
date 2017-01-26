@@ -55,10 +55,12 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
   ylim = NULL,
   ncol = 100){
 
+  dat_in <- data.frame(dat_in, stringsAsFactors = FALSE)
+  dat_in$Station <- as.character(dat_in$Station)
+
   # sanity check
   if(window < 1)
     stop('window must be greater than or equal to one')
-
 
   # stop if multiple dates and no date selection variable
   # otherwise select date
