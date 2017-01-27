@@ -13,8 +13,6 @@
 #' @details
 #' CTD station locations are linearly expanded and then matched to the nearests points in the depth sounding layer.  This is done to create a smoother depth gradient in the contour plot.  The \code{ctd_pts} data.frame must have three columns for longitude (\code{Long}), latitude (\code{Latitude}), and station name (\code{Station}).  The \code{dep_pts} data.frame should have three columns for longitude (\code{Long}), latitude (\code{Latitude}), and depth (\code{Depth}, non-negative).  The \code{plot} argument can be used to verify the match of the interpolated points with the depth soundings.
 #'
-#' The maximum depths and locations of the original stations are included in the search for the linearly expanded locations. This is done to create a seamless match between the observed depth and the hydrological depth soundings, i.e., locations at each station should have depths equal to observed and the interpolated points close to a station should have depth similar to the observed.
-#'
 #' All coordinates are assumed to be geographic decimal degrees using the WGS 1984 projection, negative longitude is west of the Prime Meridian.
 #'
 #' @return
@@ -52,13 +50,10 @@ get_depths <- function(ctd_pts, dep_pts, expand = 200, plot = FALSE, show_bath =
 
   # get distance of new points from all depth points
   # find the depth points with the minimum distance to each point
-  # depth of original stations are included in the search
-  dep_chk <- select(ctd_pts, Depth, Long, Lat) %>%
-    rbind(dep_pts)
-  clo_dep <- distm(rbind(locs, dep_chk[, c('Long', 'Lat')])) %>%
+  clo_dep <- distm(rbind(locs, dep_pts[, c('Long', 'Lat')])) %>%
     .[1:nrow(locs), ((1 + nrow(locs)):ncol(.))] %>%
     apply(1, function(x) which.min(x)[1])
-  locs <- data.frame(locs, dep_chk[clo_dep, ])
+  locs <- data.frame(locs, dep_pts[clo_dep, ])
 
   # estimate cumulative distance between points from geosphere (km)
   # extract top part of lower triangle
@@ -106,7 +101,7 @@ get_depths <- function(ctd_pts, dep_pts, expand = 200, plot = FALSE, show_bath =
 
       p <- pbase +
         geom_segment(data = mtchs, aes(x = Long, y = Lat, xend = Long.1, yend = Lat.1)) +
-        geom_point(data = dep_chk, aes(x = Long, y = Lat), alpha = 0.8) +
+        geom_point(data = dep_pts, aes(x = Long, y = Lat), alpha = 0.8) +
         geom_point(data = out, aes(x = Long, y = Lat, fill = Depth), pch = 21, size = 3, colour = 'black', alpha = 0.8) +
         scale_fill_distiller(palette = 'Spectral')
 

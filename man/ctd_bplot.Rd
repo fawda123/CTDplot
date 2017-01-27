@@ -37,6 +37,9 @@ Plot two-dimensional CTD contours for bottom water variable by station and time
 }
 \details{
 Raw data from the CTD are vertical profiles at unique stations for more than one date.  The data are linearly interpolated between dates and stations to create a two-dimensional plotting surface. The \code{dat_in} data.frame must have at a minimum six columns for date (\code{Date}), longitude (\code{Long}), latitude (\code{Lat}), station name (\code{Station}), depth (\code{Depth}, non-negative), and the variable to plot.
+
+
+Sample dates are shown as triangles on the top and station locations are shown on the right.
 }
 \examples{
 # default plot
