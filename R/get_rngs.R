@@ -5,6 +5,8 @@
 #'
 #' @param dat_in is list of data frames
 #'
+#' @export
+#'
 #' @return A \code{\link[base]{data.frame}} of the range of values for each variable
 get_rngs <- function(dat_in){
 
