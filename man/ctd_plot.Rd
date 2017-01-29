@@ -6,10 +6,10 @@
 \usage{
 ctd_plot(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = "Date",
   rngs_in = NULL, num_levs = 8, expand = 200, span = 0.05, chop = 0,
-  add = 0, txt_scl = 1, xlab = "Channel distance (km)",
-  ylab = "Depth (m)", var_lab = NULL, cols = c("tomato", "lightblue",
-  "lightgreen", "green"), msk_col = "grey", cont_ext = 0.5, ylim = NULL,
-  ncol = 100)
+  add = 0, txt_scl = 1, stt_scl = 0.7, stt_txt = TRUE,
+  xlab = "Channel distance (km)", ylab = "Depth (m)", var_lab = NULL,
+  cols = c("tomato", "lightblue", "lightgreen", "green"), msk_col = "grey",
+  cont_ext = 0.5, ylim = NULL, ncol = 100)
 }
 \arguments{
 \item{dat_in}{ctd data along the tidal axis, as a \code{\link[base]{data.frame}}}
@@ -35,6 +35,10 @@ ctd_plot(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = "Date",
 \item{add}{numeric for scalar to add to all depth values}
 
 \item{txt_scl}{numeric for scaling all text labels}
+
+\item{stt_scl}{numeric for scaling station labels at the top independent of other labels}
+
+\item{stt_txt}{logical if station labels on top are text for station names or triangles}
 
 \item{xlab}{chr string for x-axis label}
 

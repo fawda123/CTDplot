@@ -14,6 +14,8 @@
 #' @param chop numeric for trimming the depth values
 #' @param add numeric for scalar to add to all depth values
 #' @param txt_scl numeric for scaling all text labels
+#' @param stt_scl numeric for scaling station labels at the top independent of other labels
+#' @param stt_txt logical if station labels on top are text for station names or triangles
 #' @param span numeric for smoothing factor to reduce jaggedness of depth values, passed to \code{\link[stats]{stats}}, set to 1e-6 to minimize the smooth
 #' @param xlab chr string for x-axis label
 #' @param ylab chr string for y-axis label
@@ -48,7 +50,7 @@
 #' # change colors
 #' ctd_plot(ctd, 'Salinity', cols = c('Blue', 'Purple', 'Orange'), date = dt)
 ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Date', rngs_in = NULL,
-  num_levs = 8, expand = 200, span = 0.05, chop = 0, add = 0, txt_scl = 1,
+  num_levs = 8, expand = 200, span = 0.05, chop = 0, add = 0, txt_scl = 1, stt_scl = 0.7, stt_txt = TRUE,
   xlab = 'Channel distance (km)', ylab = 'Depth (m)', var_lab = NULL,
   cols = c('tomato', 'lightblue', 'lightgreen','green'), msk_col = 'grey',
   cont_ext = 0.5,
@@ -150,13 +152,13 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
   z.val <- as.matrix(new_grd[order(new_grd$Var1, decreasing = T),-1])
 
   # optional chop, smooth, and scalar for depth mask
-  dep_pts <- dep_pts %>% 
+  dep_pts <- dep_pts %>%
     mutate(
       Depth = pmin(-1 * chop, Depth),
       Depth = predict(loess(Depth ~ Dist, data = ., span = span, control = loess.control(surface = "direct"))),
       Depth = -1 * add + Depth
     )
-    
+
   ##
   # start plot
   plot.new()
@@ -221,9 +223,14 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
   y.axs <- axTicks(2, par('yaxp'))
   axis(side = 2, at = y.axs, labels = abs(y.axs), cex.axis = txt_scl)
 
-  # top
-  axis(side = 3, at = top$Dist, labels = top$Station, cex.axis = 0.7 * txt_scl,
-    tick = F, line = -0.75)
+  # top station labels, as text or otherwise triangles
+  if(stt_txt){
+    axis(side = 3, at = top$Dist, labels = top$Station, cex.axis = stt_scl * txt_scl,
+      tick = F, line = -0.75, xpd = T)
+  } else {
+    points(data.frame(x = top$Dist, y = 0), pch = 25, col = 'black', bg = 'black',
+      xpd = T, adj = 0, cex = 1 * txt_scl)
+  }
 
   # masking depth
   with(dep_pts,
