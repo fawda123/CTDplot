@@ -20,6 +20,7 @@
 #' @param xlab chr string for x-axis label
 #' @param ylab chr string for y-axis label
 #' @param var_lab optional chr string of text to include in the plot
+#' @param var_scl numeric for text size of \code{var_lab}
 #' @param cols chr string of colors for the plot
 #' @param msk_col chr string for color of masking depth
 #' @param cont_ext numeric (meters) for reducing the mask size for the interpolated contour plot, this can be useful to remove white spaces that are not covered by the masking depth but may have an effect on the gradient in the color ramp
@@ -51,7 +52,7 @@
 #' ctd_plot(ctd, 'Salinity', cols = c('Blue', 'Purple', 'Orange'), date = dt)
 ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Date', rngs_in = NULL,
   num_levs = 8, expand = 200, span = 0.05, chop = 0, add = 0, txt_scl = 1, stt_scl = 0.7, stt_txt = TRUE,
-  xlab = 'Channel distance (km)', ylab = 'Depth (m)', var_lab = NULL,
+  xlab = 'Channel distance (km)', ylab = 'Depth (m)', var_lab = NULL, var_scl = 1.5, 
   cols = c('tomato', 'lightblue', 'lightgreen','green'), msk_col = 'grey',
   cont_ext = 0.5,
   ylim = NULL,
@@ -244,7 +245,7 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
   # variable name -lower left
   if(!is.null(var_lab))
     text(x = par('usr')[1], 0.925 * par('usr')[3], labels = var_lab, pos = 4,
-      cex = 1.5 * txt_scl)
+      cex = var_scl * txt_scl)
 
   box()
 
