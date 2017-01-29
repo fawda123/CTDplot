@@ -5,7 +5,7 @@
 \title{Contour plot for CTD data}
 \usage{
 ctd_plot(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = "Date",
-  rngs_in = NULL, num_levs = 8, expand = 200, window = 5, chop = 0,
+  rngs_in = NULL, num_levs = 8, expand = 200, span = 0.05, chop = 0,
   add = 0, txt_scl = 1, xlab = "Channel distance (km)",
   ylab = "Depth (m)", var_lab = NULL, cols = c("tomato", "lightblue",
   "lightgreen", "green"), msk_col = "grey", cont_ext = 0.5, ylim = NULL,
@@ -28,7 +28,7 @@ ctd_plot(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = "Date",
 
 \item{expand}{numeric for expanding sample size of CTD points, see \code{\link{get_depths}}}
 
-\item{window}{numeric for smoothing factor to reduce jaggedness of depth values, default does nothing}
+\item{span}{numeric for smoothing factor to reduce jaggedness of depth values, passed to \code{\link[stats]{stats}}, set to 1e-6 to minimize the smooth}
 
 \item{chop}{numeric for trimming the depth values}
 

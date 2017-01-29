@@ -14,7 +14,7 @@
 #' @param chop numeric for trimming the depth values
 #' @param add numeric for scalar to add to all depth values
 #' @param txt_scl numeric for scaling all text labels
-#' @param window numeric for smoothing factor to reduce jaggedness of depth values, default does nothing
+#' @param span numeric for smoothing factor to reduce jaggedness of depth values, passed to \code{\link[stats]{stats}}, set to 1e-6 to minimize the smooth
 #' @param xlab chr string for x-axis label
 #' @param ylab chr string for y-axis label
 #' @param var_lab optional chr string of text to include in the plot
@@ -48,7 +48,7 @@
 #' # change colors
 #' ctd_plot(ctd, 'Salinity', cols = c('Blue', 'Purple', 'Orange'), date = dt)
 ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Date', rngs_in = NULL,
-  num_levs = 8, expand = 200, window = 5, chop = 0, add = 0, txt_scl = 1,
+  num_levs = 8, expand = 200, span = 0.05, chop = 0, add = 0, txt_scl = 1,
   xlab = 'Channel distance (km)', ylab = 'Depth (m)', var_lab = NULL,
   cols = c('tomato', 'lightblue', 'lightgreen','green'), msk_col = 'grey',
   cont_ext = 0.5,
@@ -59,8 +59,8 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
   dat_in$Station <- as.character(dat_in$Station)
 
   # sanity check
-  if(window < 1)
-    stop('window must be greater than or equal to one')
+  if(span <= 0)
+    stop('window must be greater than zero')
 
   # stop if multiple dates and no date selection variable
   # otherwise select date
@@ -150,13 +150,13 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
   z.val <- as.matrix(new_grd[order(new_grd$Var1, decreasing = T),-1])
 
   # optional chop, smooth, and scalar for depth mask
-  dep_pts <- mutate(dep_pts,
-    Depth = pmin(-1 * chop, Depth),
-    Depth = as.numeric(stats::filter(Depth, sides = 1, filter = rep(1, window)/window)),
-    Depth = rev(zoo::na.locf(rev(Depth))),
-    Depth = -1 * add + Depth
-  )
-
+  dep_pts <- dep_pts %>% 
+    mutate(
+      Depth = pmin(-1 * chop, Depth),
+      Depth = predict(loess(Depth ~ Dist, data = ., span = span, control = loess.control(surface = "direct"))),
+      Depth = -1 * add + Depth
+    )
+    
   ##
   # start plot
   plot.new()

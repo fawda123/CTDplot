@@ -2,7 +2,7 @@ Package: CTDplot
 Type: Package
 Title: Plot CTD water quality data along an estuarine axis
 Version: 0.0.5.9000
-Date: 2017-01-27
+Date: 2017-01-29
 Author: Marcus W. Beck [aut, cre]
 Maintainer: Marcus W. Beck <mbafs2012@gmail.com>
 Description: Plot CTD water quality data along an estuarine axis.
