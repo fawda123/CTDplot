@@ -6,7 +6,7 @@
 \usage{
 ctd_plot(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = "Date",
   rngs_in = NULL, num_levs = 8, expand = 200, span = 0.05, chop = 0,
-  add = 0, txt_scl = 1, stt_scl = 0.7, stt_txt = TRUE,
+  add = 0, txt_scl = 1, stt_scl = 0.7, stt_txt = TRUE, plot = TRUE,
   xlab = "Channel distance (km)", ylab = "Depth (m)", var_lab = NULL,
   var_scl = 1.5, cols = c("tomato", "lightblue", "lightgreen", "green"),
   msk_col = "grey", cont_ext = 0.5, ylim = NULL, ncol = 100)
@@ -40,6 +40,8 @@ ctd_plot(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = "Date",
 
 \item{stt_txt}{logical if station labels on top are text for station names or triangles}
 
+\item{plot}{logical if plot is returned, otherwise the interpolated data are returned}
+
 \item{xlab}{chr string for x-axis label}
 
 \item{ylab}{chr string for y-axis label}
@@ -59,7 +61,7 @@ ctd_plot(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = "Date",
 \item{ncol}{numeric indicating degree of smoothing for the color palette}
 }
 \value{
-The contour plot
+The contour plot if \code{plot = TRUE}, otherwise a three-element list with the x values as distance in km, y values as depth, and z values as the interpolated CTD variable
 }
 \description{
 Plot two-dimensional contours for CTD data by depth and distance

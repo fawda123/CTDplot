@@ -16,6 +16,7 @@
 #' @param txt_scl numeric for scaling all text labels
 #' @param stt_scl numeric for scaling station labels at the top independent of other labels
 #' @param stt_txt logical if station labels on top are text for station names or triangles
+#' @param plot logical if plot is returned, otherwise the interpolated data are returned
 #' @param span numeric for smoothing factor to reduce jaggedness of depth values, passed to \code{\link[stats]{stats}}, set to 1e-6 to minimize the smooth
 #' @param xlab chr string for x-axis label
 #' @param ylab chr string for y-axis label
@@ -27,7 +28,7 @@
 #' @param ylim numeric vector for y-axis limits, values must be negative for increasing depth
 #' @param ncol numeric indicating degree of smoothing for the color palette
 #'
-#' @return The contour plot
+#' @return The contour plot if \code{plot = TRUE}, otherwise a three-element list with the x values as distance in km, y values as depth, and z values as the interpolated CTD variable
 #'
 #' @import dplyr
 #'
@@ -51,8 +52,8 @@
 #' # change colors
 #' ctd_plot(ctd, 'Salinity', cols = c('Blue', 'Purple', 'Orange'), date = dt)
 ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Date', rngs_in = NULL,
-  num_levs = 8, expand = 200, span = 0.05, chop = 0, add = 0, txt_scl = 1, stt_scl = 0.7, stt_txt = TRUE,
-  xlab = 'Channel distance (km)', ylab = 'Depth (m)', var_lab = NULL, var_scl = 1.5, 
+  num_levs = 8, expand = 200, span = 0.05, chop = 0, add = 0, txt_scl = 1, stt_scl = 0.7, stt_txt = TRUE, plot = TRUE,
+  xlab = 'Channel distance (km)', ylab = 'Depth (m)', var_lab = NULL, var_scl = 1.5,
   cols = c('tomato', 'lightblue', 'lightgreen','green'), msk_col = 'grey',
   cont_ext = 0.5,
   ylim = NULL,
@@ -151,6 +152,12 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
   y.val <- new_grd$Var1
   x.val <- as.numeric(names(new_grd)[-1])
   z.val <- as.matrix(new_grd[order(new_grd$Var1, decreasing = T),-1])
+
+  # return data if plot is false
+  if(!plot){
+    out <- list(x = x.val, y = y.val, z = z.val)
+    return(out)
+  }
 
   # optional chop, smooth, and scalar for depth mask
   dep_pts <- dep_pts %>%
