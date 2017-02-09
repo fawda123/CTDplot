@@ -46,6 +46,9 @@
 #' dt <- '2014-04-21'
 #' ctd_plot(ctd, var_plo = 'Salinity', dep_in = PB_dep_pts, date = dt)
 #'
+#' # get interpolated data
+#' ctd_plot(ctd, var_plo = 'Salinity', dep_in = PB_dep_pts, date = dt, plot = FALSE)
+#'
 #' # make color ramp match contour categories in legend
 #' ctd_plot(ctd, 'Salinity', ncol = 8, date = dt)
 #'
