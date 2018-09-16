@@ -1,3 +1,10 @@
+---
+output:
+  html_document:
+    keep_md: yes
+    toc: no
+    self_contained: no
+---
 
 ## CTDplot
 

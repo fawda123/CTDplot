@@ -126,7 +126,7 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
   }
 
   # fill leading NA with earliest obs value
-  dat_in <- zoo::na.locf(dat_in)
+  dat_in <- zoo::na.locf(dat_in, na.rm = FALSE)
 
   # flip by depth, fill trailing NA with last obs value
   dat_in <- dat_in[order(dat_in$Depth, decreasing = T), ]
