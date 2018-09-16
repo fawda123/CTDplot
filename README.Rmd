@@ -8,9 +8,11 @@ output:
 
 ## CTDplot
 
-#### *Marcus W. Beck, mbafs2012@gmail.com*
+#### *Marcus W. Beck, marcusb@sccwrp.org*
 
 [![Travis-CI Build Status](https://travis-ci.org/fawda123/CTDplot.svg?branch=master)](https://travis-ci.org/fawda123/CTDplot)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/fawda123/CTDplot?branch=master&svg=true)](https://ci.appveyor.com/project/fawda123/CTDplot)
+[![DOI](https://zenodo.org/badge/41971249.svg)](https://zenodo.org/badge/latestdoi/41971249)
 
 Create two-dimensional contour plots of CTD water quality data. Install the package as follows:
 

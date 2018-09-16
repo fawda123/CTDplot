@@ -3,3 +3,5 @@
 README.*
 ^\.travis\.yml$
 data-raw\.*
+^appveyor\.yml$
+CTDplot.Rproj
