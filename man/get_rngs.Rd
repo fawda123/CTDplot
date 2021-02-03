@@ -15,4 +15,3 @@ A \code{\link[base]{data.frame}} of the range of values for each variable
 \description{
 Get the range of values for the same water quality variable between dates
 }
-

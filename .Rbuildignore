@@ -5,3 +5,4 @@ README.*
 data-raw\.*
 ^appveyor\.yml$
 CTDplot.Rproj
+^\.github$

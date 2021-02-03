@@ -4,7 +4,8 @@
 \name{ctd}
 \alias{ctd}
 \title{Example CTD data}
-\format{A \code{\link[base]{data.frame}} with 173 rows and 13 variables:
+\format{
+A \code{\link[base]{data.frame}} with 173 rows and 13 variables:
 \describe{
   \item{\code{Station}}{chr, station name}
   \item{\code{Date}}{Date, Date of the survey}
@@ -13,7 +14,8 @@
   \item{\code{Depth}}{num, depth along the vertical profile (m)}
   \item{\code{Salinity}}{num, salinity}
   \item{\code{DO}}{num, dissolved oxygen concentration}
-}}
+}
+}
 \usage{
 ctd
 }
@@ -24,4 +26,3 @@ Example CTD data for seven sample dates at nine stations on the longitudinal axi
 data(ctd)
 }
 \keyword{datasets}
-

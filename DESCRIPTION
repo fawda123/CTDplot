@@ -15,15 +15,16 @@ Imports:
     dplyr,
     fields,
     geosphere,
-    ggmap,
     ggplot2,
     ggrepel,
     reshape2, 
     zoo
+Suggests:
+    ggmap
 LazyData: true
 Depends:
     R (>= 3.2.0)
 Authors@R: person(given = "Marcus W.", family = "Beck",
     role = c("aut","cre"),
-    email = "mbafs2012@gmail.com")
-RoxygenNote: 5.0.1
+    email = "mbeck@tbep.org")
+RoxygenNote: 7.1.1

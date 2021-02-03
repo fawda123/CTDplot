@@ -4,8 +4,15 @@
 \alias{get_depths}
 \title{Match CTD points with closest hydro soundings}
 \usage{
-get_depths(ctd_pts, dep_pts, expand = 200, plot = FALSE, show_bath = TRUE,
-  show_stat = TRUE, zoom = 12)
+get_depths(
+  ctd_pts,
+  dep_pts,
+  expand = 200,
+  plot = FALSE,
+  show_bath = TRUE,
+  show_stat = TRUE,
+  zoom = 12
+)
 }
 \arguments{
 \item{ctd_pts}{data.frame of CTD station locations, see details}
@@ -41,4 +48,3 @@ get_depths(toplo, PB_dep_pts)
 get_depths(toplo, PB_dep_pts, plot = TRUE)
 }
 }
-

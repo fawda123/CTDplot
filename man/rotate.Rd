@@ -15,4 +15,3 @@ Rotate a matrix
 \details{
 Used internally in \code{\link{ctd_plot}}
 }
-

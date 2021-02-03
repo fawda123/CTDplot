@@ -32,4 +32,3 @@ labs <- names(dat)
 ctd_plotmult(dat, 'Salinity', PB_dep_pts, var_labs = labs)
 }
 }
-

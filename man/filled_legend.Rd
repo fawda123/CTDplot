@@ -4,13 +4,29 @@
 \alias{filled_legend}
 \title{Plot legend from a contour plot}
 \usage{
-filled_legend(x = seq(0, 1, length.out = nrow(z)), y = seq(0, 1, length.out
-  = ncol(z)), z, xlim = range(x, finite = TRUE), ylim = range(y, finite =
-  TRUE), zlim = range(z, finite = TRUE), levels = pretty(zlim, nlevels),
-  nlevels = 20, color.palette = cm.colors,
-  col = color.palette(length(levels) - 1), plot.title, plot.axes, key.title,
-  key.axes, asp = NA, xaxs = "i", yaxs = "i", las = 1, axes = TRUE,
-  frame.plot = axes, ...)
+filled_legend(
+  x = seq(0, 1, length.out = nrow(z)),
+  y = seq(0, 1, length.out = ncol(z)),
+  z,
+  xlim = range(x, finite = TRUE),
+  ylim = range(y, finite = TRUE),
+  zlim = range(z, finite = TRUE),
+  levels = pretty(zlim, nlevels),
+  nlevels = 20,
+  color.palette = cm.colors,
+  col = color.palette(length(levels) - 1),
+  plot.title,
+  plot.axes,
+  key.title,
+  key.axes,
+  asp = NA,
+  xaxs = "i",
+  yaxs = "i",
+  las = 1,
+  axes = TRUE,
+  frame.plot = axes,
+  ...
+)
 }
 \arguments{
 \item{x}{locations of grid lines at which the values in \code{z} are
@@ -49,7 +65,7 @@ filled_legend(x = seq(0, 1, length.out = nrow(z)), y = seq(0, 1, length.out
 
 \item{plot.title}{statements which add titles to the main plot.}
 
-\item{plot.axes}{statements which draw axes (and a \code{\link{box}})
+\item{plot.axes}{statements which draw axes (and a \code{\link[graphics]{box}})
    on the main plot.  This overrides the default axes.}
 
 \item{key.title}{statements which add titles for the plot key.}
@@ -57,7 +73,7 @@ filled_legend(x = seq(0, 1, length.out = nrow(z)), y = seq(0, 1, length.out
 \item{key.axes}{statements which draw axes on the plot key.
     This overrides the default axis.}
 
-\item{asp}{the \eqn{y/x} aspect ratio, see \code{\link{plot.window}}.}
+\item{asp}{the \eqn{y/x} aspect ratio, see \code{\link[graphics]{plot.window}}.}
 
 \item{xaxs}{the x axis style.  The default is to use internal
     labeling.}
@@ -69,12 +85,12 @@ filled_legend(x = seq(0, 1, length.out = nrow(z)), y = seq(0, 1, length.out
     use horizontal labeling.}
 
 \item{axes}{logicals indicating if axes and a box should be
-   drawn, as in \code{\link{plot.default}}.}
+   drawn, as in \code{\link[graphics]{plot.default}}.}
 
 \item{frame.plot}{logical for frame}
 
-\item{...}{additional \link{graphical parameters}, currently only passed to
-   \code{\link{title}()}.}
+\item{...}{additional \link[graphics]{graphical parameters}, currently only passed to
+   \code{\link[graphics]{title}()}.}
 }
 \description{
 Plot only the legend from a contour plot
@@ -84,4 +100,3 @@ This function was taken from the filled.legend script at \url{http://wiki.cbr.wa
 
 Modification of filled.contour by Carey McGilliard and Bridget Ferris designed to just plot the legend.
 }
-

@@ -4,12 +4,32 @@
 \alias{ctd_plot}
 \title{Contour plot for CTD data}
 \usage{
-ctd_plot(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = "Date",
-  rngs_in = NULL, num_levs = 8, expand = 200, span = 0.05, chop = 0,
-  add = 0, txt_scl = 1, stt_scl = 0.7, stt_txt = TRUE, plot = TRUE,
-  xlab = "Channel distance (km)", ylab = "Depth (m)", var_lab = NULL,
-  var_scl = 1.5, cols = c("tomato", "lightblue", "lightgreen", "green"),
-  msk_col = "grey", cont_ext = 0.5, ylim = NULL, ncol = 100)
+ctd_plot(
+  dat_in,
+  var_plo,
+  dep_in = NULL,
+  date = NULL,
+  date_col = "Date",
+  rngs_in = NULL,
+  num_levs = 8,
+  expand = 200,
+  span = 0.05,
+  chop = 0,
+  add = 0,
+  txt_scl = 1,
+  stt_scl = 0.7,
+  stt_txt = TRUE,
+  plot = TRUE,
+  xlab = "Channel distance (km)",
+  ylab = "Depth (m)",
+  var_lab = NULL,
+  var_scl = 1.5,
+  cols = c("tomato", "lightblue", "lightgreen", "green"),
+  msk_col = "grey",
+  cont_ext = 0.5,
+  ylim = NULL,
+  ncol = 100
+)
 }
 \arguments{
 \item{dat_in}{ctd data along the tidal axis, as a \code{\link[base]{data.frame}}}
@@ -86,4 +106,3 @@ ctd_plot(ctd, 'Salinity', cols = c('Blue', 'Purple', 'Orange'), date = dt)
 \references{
 Hagy III, JD, Murrell, MC. 2007. Susceptibility of a northern Gulf of Mexico estuary to hypoxia: An analysis using box models. Estuarine, Coastal, and Shelf Science. 74:239-253.
 }
-

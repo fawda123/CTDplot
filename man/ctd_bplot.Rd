@@ -4,9 +4,18 @@
 \alias{ctd_bplot}
 \title{Plot contours of bottom water variable by station and time}
 \usage{
-ctd_bplot(dat_in, var_plo, date_col = "Date", num_levs = 8, expand = 200,
-  txt_scl = 1, xlab = "Date", ylab = "Channel distance (km)",
-  cols = c("tomato", "lightblue", "lightgreen", "green"), ncol = 100)
+ctd_bplot(
+  dat_in,
+  var_plo,
+  date_col = "Date",
+  num_levs = 8,
+  expand = 200,
+  txt_scl = 1,
+  xlab = "Date",
+  ylab = "Channel distance (km)",
+  cols = c("tomato", "lightblue", "lightgreen", "green"),
+  ncol = 100
+)
 }
 \arguments{
 \item{dat_in}{ctd data along the tidal axis, as a \code{\link[base]{data.frame}}}
@@ -45,4 +54,3 @@ Sample dates are shown as triangles on the top and station locations are shown o
 # default plot
 ctd_bplot(ctd, var_plo = 'DO')
 }
-
