@@ -25,5 +25,5 @@ Depends:
     R (>= 3.2.0)
 Authors@R: person(given = "Marcus W.", family = "Beck",
     role = c("aut","cre"),
-    email = "mbafs2012@gmail.com")
+    email = "mbeck@tbep.org")
 RoxygenNote: 5.0.1
