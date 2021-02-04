@@ -28,3 +28,4 @@ Authors@R: person(given = "Marcus W.", family = "Beck",
     role = c("aut","cre"),
     email = "mbeck@tbep.org")
 RoxygenNote: 7.1.1
+
