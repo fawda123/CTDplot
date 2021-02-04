@@ -84,22 +84,17 @@ get_depths <- function(ctd_pts, dep_pts, expand = 200, plot = FALSE, show_bath =
   # return plot if T
   if(plot){
 
+    # extent
+    ext <- ggmap::make_bbox(out$Long, out$Lat)
+    map <- ggmap::get_stamenmap(ext, zoom = zoom, maptype = "toner-lite")
 
-    if(requireNamespace('ggmap', quietly = TRUE)){
-
-      # extent
-      ext <- ggmap::make_bbox(out$Long, out$Lat)
-      map <- ggmap::get_stamenmap(ext, zoom = zoom, maptype = "toner-lite")
-
-      # base map
-      pbase <- ggmap::ggmap(map) +
-        theme_bw() +
-        theme(
-          axis.title.x = element_blank(),
-          axis.title.y = element_blank()
-        )
-
-    }
+    # base map
+    pbase <- ggmap::ggmap(map) +
+      theme_bw() +
+      theme(
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank()
+      )
 
     # add depth points to interped
     if(show_bath){

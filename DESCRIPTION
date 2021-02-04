@@ -15,6 +15,7 @@ Imports:
     dplyr,
     fields,
     geosphere,
+    ggmap,
     ggplot2,
     ggrepel,
     reshape2, 
