@@ -16,6 +16,7 @@
 #' @param txt_scl numeric for scaling all text labels
 #' @param stt_scl numeric for scaling station labels at the top independent of other labels
 #' @param stt_txt logical if station labels on top are text for station names or triangles
+#' @param xrev logical indicating if distance values on the x-axis should be reversed
 #' @param plot logical if plot is returned, otherwise the interpolated data are returned
 #' @param span numeric for smoothing factor to reduce jaggedness of depth values, passed to \code{\link[stats]{stats}}, set to 1e-6 to minimize the smooth
 #' @param xlab chr string for x-axis label
@@ -55,7 +56,8 @@
 #' # change colors
 #' ctd_plot(ctd, 'Salinity', cols = c('Blue', 'Purple', 'Orange'), date = dt)
 ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Date', rngs_in = NULL,
-  num_levs = 8, expand = 200, span = 0.05, chop = 0, add = 0, txt_scl = 1, stt_scl = 0.7, stt_txt = TRUE, plot = TRUE,
+  num_levs = 8, expand = 200, span = 0.05, chop = 0, add = 0, txt_scl = 1, stt_scl = 0.7,
+  stt_txt = TRUE, xrev = FALSE, plot = TRUE,
   xlab = 'Channel distance (km)', ylab = 'Depth (m)', var_lab = NULL, var_scl = 1.5,
   cols = c('tomato', 'lightblue', 'lightgreen','green'), msk_col = 'grey',
   cont_ext = 0.5,
@@ -227,8 +229,14 @@ ctd_plot <- function(dat_in, var_plo, dep_in = NULL, date = NULL, date_col = 'Da
   ##
   # axes
 
-  # x
-  axis(side = 1, cex.axis = txt_scl)
+  # x, reverse if xrev is true
+  if(xrev){
+    labs <- rev(axTicks(1, par('xaxp')))
+    at <- rev(seq(max(x.val), min(x.val), by = unique(diff(labs))))
+    axis(side = 1, cex.axis = txt_scl, at = at, labels = labs)
+  } else {
+    axis(side = 1, cex.axis = txt_scl)
+  }
 
   # y
   y.axs <- axTicks(2, par('yaxp'))

@@ -29,14 +29,6 @@ filled_contour(
 )
 }
 \arguments{
-\item{x}{locations of grid lines at which the values in \code{z} are
-   measured.  These must be in ascending order.  (The rest of this
-   description does not apply to \code{.filled.contour}.)
-   By default, equally spaced values from 0 to 1 are used.  If \code{x}
-   is a \code{list}, its components \code{x$x} and \code{x$y} are used
-   for \code{x} and \code{y}, respectively.  If the list has component
-   \code{z} this is used for \code{z}.}
-
 \item{y}{numeric same as \code{x}}
 
 \item{z}{a numeric matrix containing the values to be plotted..  Note that
@@ -83,9 +75,6 @@ filled_contour(
 
 \item{las}{the style of labeling to be used.  The default is to
     use horizontal labeling.}
-
-\item{axes}{logicals indicating if axes and a box should be
-   drawn, as in \code{\link[graphics]{plot.default}}.}
 
 \item{frame.plot}{logical for frame}
 

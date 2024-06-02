@@ -19,6 +19,7 @@ ctd_plot(
   txt_scl = 1,
   stt_scl = 0.7,
   stt_txt = TRUE,
+  xrev = FALSE,
   plot = TRUE,
   xlab = "Channel distance (km)",
   ylab = "Depth (m)",
@@ -59,6 +60,8 @@ ctd_plot(
 \item{stt_scl}{numeric for scaling station labels at the top independent of other labels}
 
 \item{stt_txt}{logical if station labels on top are text for station names or triangles}
+
+\item{xrev}{logical indicating if distance values on the x-axis should be reversed}
 
 \item{plot}{logical if plot is returned, otherwise the interpolated data are returned}
 
