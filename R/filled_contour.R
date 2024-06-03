@@ -4,8 +4,6 @@
 #' Modification of filled.contour from graphics package
 #'
 #' @inheritParams graphics::filled.contour
-#' @param y numeric same as \code{x}
-#' @param frame.plot logical for frame
 #'
 #' @details This function was taken from the filled.contour3 script at \url{http://wiki.cbr.washington.edu/qerm/index.php/R/Contour_Plots}.  The following was taken directly from original script:
 #'

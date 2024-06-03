@@ -1,6 +1,6 @@
 globalVariables(c('.', 'Date', 'Depth', 'Dist', 'Lat', 'Lat.1', 'Long', 'Long.1', 'Station'))
 
-#' @importFrom stats approx
+#' @importFrom stats approx loess loess.control predict
 NULL
 
 #' @importFrom grDevices cm.colors colorRampPalette

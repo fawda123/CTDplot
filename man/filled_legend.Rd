@@ -29,7 +29,13 @@ filled_legend(
 )
 }
 \arguments{
-\item{y}{numeric same as \code{x}}
+\item{x, y}{locations of grid lines at which the values in \code{z} are
+   measured.  These must be in ascending order.  (The rest of this
+   description does not apply to \code{.filled.contour}.)
+   By default, equally spaced values from 0 to 1 are used.  If \code{x}
+   is a \code{list}, its components \code{x$x} and \code{x$y} are used
+   for \code{x} and \code{y}, respectively.  If the list has component
+   \code{z} this is used for \code{z}.}
 
 \item{z}{a numeric matrix containing the values to be plotted..  Note that
    \code{x} can be used instead of \code{z} for convenience.}
@@ -76,7 +82,8 @@ filled_legend(
 \item{las}{the style of labeling to be used.  The default is to
     use horizontal labeling.}
 
-\item{frame.plot}{logical for frame}
+\item{axes, frame.plot}{logicals indicating if axes and a box should be
+   drawn, as in \code{\link[graphics]{plot.default}}.}
 
 \item{...}{additional \link[graphics]{graphical parameters}, currently only passed to
    \code{\link[graphics]{title}()}.}

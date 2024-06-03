@@ -3,8 +3,6 @@
 #' Plot only the legend from a contour plot
 #'
 #' @inheritParams graphics::filled.contour
-#' @param y numeric same as \code{x}
-#' @param frame.plot logical for frame
 #'
 #' @details This function was taken from the filled.legend script at \url{http://wiki.cbr.washington.edu/qerm/index.php/R/Contour_Plots}.  The following was taken directly from original script:
 #'
